@@ -2,9 +2,16 @@
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Work+Sans:400,500,600,700&display=swap');
   
   body{
+    font-family: "work sans";
+  }
+
+  .login-bg {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: rgb(238,174,202);
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-    font-family: "work sans";
   }
   
   .title {
@@ -22,7 +29,6 @@
     max-height: 700px;
     width: 30%;
     height: 60%;
-    margin: 100px auto;
     background-color: #FFFFFF;
     border-radius: 25px;
   }

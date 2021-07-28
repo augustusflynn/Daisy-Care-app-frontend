@@ -49,11 +49,13 @@ class Login extends Component {
         const { username, password, isShowPassword, err } = this.state
 
         return (
-            <div id="loginform">
-          
+            <div className="login-bg">
+
+                <div id="loginform">
+            
             <h2 id="headerTitle">Login</h2>
             <div>
-            <div class="row">
+            <div className="row">
                 <label>Username</label>
                 <input 
                     value={username} 
@@ -63,7 +65,7 @@ class Login extends Component {
                 />
             </div>  
 
-            <div class="row" style={{marginLeft: '12px'}}>
+            <div className="row" style={{marginLeft: '12px'}}>
                 <label>Password</label>
                 <div>
                     <input 
@@ -72,7 +74,7 @@ class Login extends Component {
                         placeholder="password"
                         type={isShowPassword ? "text" : "password"}
                     />
-                     <span
+                    <span
                         onClick={this.handleShowPassword}
                     >
                         <i className={ isShowPassword ? "far fa-eye": "far fa-eye-slash"}></i>
@@ -80,16 +82,17 @@ class Login extends Component {
                 </div>
             </div>  
 
-             {err && <p className="error">{err}</p>}
-             <div id="button" class="row">
+            {err && <p className="error">{err}</p>}
+            <div id="button" className="row">
             <button 
                 onClick={this.submit} 
                 className="btnAAA"
             >Sign in</button>
             
-          </div>
-           </div>
-              </div>
+            </div>
+            </div>
+                </div>
+            </div>
          )
     }
 }

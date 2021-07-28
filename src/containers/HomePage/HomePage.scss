@@ -1,0 +1,235 @@
+.home-header-container {
+    height: 60px;
+    width: 100%;
+    padding: 0 20px;
+
+    .home-header-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        .left-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+
+            .btnIcon {
+                font-size: 25px;
+                color: #777;
+                cursor: pointer;
+            }
+
+            .header-logo {
+                cursor: pointer;
+                height: 100%;
+                width: 100%;
+                background: url('../../assets/images/bookingcare-2020.svg') center no-repeat;
+
+            }
+        }
+
+        .center-content {
+            width: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            .child-content {
+                .subTitle {
+                    font-size: 12px;
+                    font-weight: 400;
+                }
+            }
+            
+        }
+
+        .right-content {
+            width: 25%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .support {
+                display: flex;
+            }
+        }
+    }
+}
+
+.home-header-banner {
+    background: url('../../assets/images/bookingcare-cover-4.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 485px;
+    padding: 15px 0;
+
+    .title1 {
+        text-align: center;
+        font-size: 30px; 
+        color: #fff;
+        padding-bottom: 5px;
+        padding-top: 30px;
+        text-shadow: 1px 1px 1px #333;
+    }
+
+    .title2 {
+        text-align: center;
+        font-size: 30px; 
+        color: #fff;
+        padding-bottom: 15px;
+        text-shadow: 1px 1px 1px #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .search {
+        align-items: center;
+        display: flex;
+        margin: 0 auto;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 25px;
+        background-color: #f7d800;
+
+        i {
+            margin: 0 5px;
+        }
+
+        input {
+            height: 30px;
+            width: 360px;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+    }
+
+    .others-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 38px;
+
+        .ios-app {
+            background: url('../../assets/images/app-store-badge-black.svg') center center no-repeat;
+            width: 110px;
+            height: 32px;
+            cursor: pointer;
+            background-size: cover;
+            margin-right: 25px;
+        }
+
+        .android-app {
+            background: url('../../assets/images/google-play-badge.svg') center center no-repeat;
+            width: 110px;
+            height: 32px;
+            cursor: pointer;
+            background-size: cover;
+        }
+    }
+
+    .options {
+        cursor: pointer;
+        margin-top: 60px;
+        text-align: center;
+        display: flex;
+        gap: 25px;
+        justify-content: center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 1));
+        padding-top: 30px;
+        padding-bottom: 20px;
+
+        .options-child {
+            width: 125px;
+            align-items: center;
+            &:hover {
+                color: #49bce2;
+            } 
+    
+            .icon-child {
+
+                
+                .hospital {
+                    background: url("../../assets/images/kham_chuyenkhoa.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+
+                .ktx {
+                    background: url("../../assets/images/kham_tuxa.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+
+                .ktq {
+                    background: url("../../assets/images/kham_tongquat.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+
+                .xnyh {
+                    background: url("../../assets/images/dichvu_xetnghiem.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+
+                .sktt {
+                    background: url("../../assets/images/suckhoe_tinhthan.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+
+                .knk {
+                    background: url("../../assets/images/kham_nhakhoa.png") center center no-repeat;
+                    background-color: #fff;
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    box-shadow: 0px 1px 2px #333;
+                    margin: 2px auto;
+                    background-size: 32px;
+                    border-radius: 50%;
+                }
+            }
+
+            .text-child {
+                font-size: 17px;
+                font-weight: 500;
+            }
+        }
+
+    }
+}

@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { emitter } from '../../utils/index'
+import _ from 'lodash'
 
-
-const intitState = {
-    email: '',
-    password: '', 
-    firstName: '',
-    lastName: '',
-    address: '',
-} 
-class ModalUser extends Component {
+class ModalEditUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...intitState
+            id: '',
+            email: '',
+            firstName: '',
+            lastName: '',
+            address: ''
         }
-        this.listenToEmitter();
-    }
-
-    listenToEmitter = () => {
-        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
-            this.setState({
-                ...intitState
-            })
-        })
-
     }
 
     handleUpdateInput = (e) => {
@@ -39,7 +25,7 @@ class ModalUser extends Component {
 
     checkValidate = () => {
         let isValid = true;
-        let arrInput = ["email", 'password', "firstName", "lastName", "address"];
+        let arrInput = ["email", "firstName", "lastName", "address"];
         for(let i = 0; i < arrInput.length; i++) {
             if(!this.state[arrInput[i]]) {
                 isValid = false;
@@ -51,22 +37,33 @@ class ModalUser extends Component {
         return isValid;
     }
 
-    handleAddNewUser = () => {
+    handleSaveNewUser = () => {
         //validate info before push req
         let isValid = this.checkValidate()
         if(isValid) {
             //calll API create
-            this.props.createNewUser(this.state)
+            this.props.editUser(this.state)
         }
 
     }
 
     componentDidMount() {
+        const { user } = this.props
+        console.log(user)
+        if(user && !_.isEmpty(user)) {
+            this.setState({
+                id: user.id,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                address: user.address
+            })
+        }
     }
 
     render() {
         const { isOpen, toggle } = this.props
-        const { email, password, firstName, lastName, address } = this.state
+        const { email, firstName, lastName, address } = this.state
         return (
             <Modal 
                 isOpen={isOpen} 
@@ -75,7 +72,7 @@ class ModalUser extends Component {
                 size="lg"
                 centered
             >
-                <ModalHeader toggle={toggle}>Create user</ModalHeader>
+                <ModalHeader toggle={toggle}>Edit a user</ModalHeader>
                 <ModalBody>
                     <div className="modal-user-body">
                         <div className="input-container">
@@ -85,15 +82,7 @@ class ModalUser extends Component {
                                 type="text"
                                 onChange={this.handleUpdateInput}
                                 value={email}
-                            />
-                        </div>
-                        <div className="input-container">
-                            <label>Password</label>
-                            <input 
-                                type="password"
-                                name="password"
-                                onChange={this.handleUpdateInput}
-                                value={password}
+                                disabled
                             />
                         </div>
                         <div className="input-container">
@@ -126,7 +115,7 @@ class ModalUser extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                <Button color="primary" className="px-3" onClick={this.handleAddNewUser}>Add new</Button>{' '}
+                <Button color="primary" className="px-3" onClick={this.handleSaveNewUser}>Submit</Button>{' '}
                 <Button color="secondary" className="px-3" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -134,4 +123,4 @@ class ModalUser extends Component {
     }
 }
 
-export default ModalUser
+export default ModalEditUser
