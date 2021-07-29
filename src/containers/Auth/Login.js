@@ -82,7 +82,7 @@ class Login extends Component {
                 </div>
             </div>  
 
-            {err && <p className="error">{err}</p>}
+            {err ? <p className="error">{err}</p> : <p style={{color:"#fff"}}>NULL</p>}
             <div id="button" className="row">
             <button 
                 onClick={this.submit} 
