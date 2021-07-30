@@ -29,3 +29,7 @@ export const deleteUser = (userId) =>{
 export const editUser = (userInfo) => {
     return axios.put('/api/edit-user', userInfo)
 }
+
+export const getAllCodeService = (inputType) => {  
+    return axios.get(`/api/allcode?type=${inputType}`)
+}

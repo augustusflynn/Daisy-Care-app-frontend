@@ -18,7 +18,7 @@ class HomeHeader extends Component {
             <React.Fragment>
                 <div className="home-header-container">
 
-                <div className="home-header-content">
+                    <div className="home-header-content">
                     <div className="left-content">
                         <i className="fas fa-bars btnIcon"/>
                         <img className="header-logo" src={logo} alt="logo"/>
@@ -55,7 +55,7 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
 
                 <div className="home-header-banner">
                     <div className="bar">

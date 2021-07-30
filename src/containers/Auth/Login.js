@@ -18,7 +18,8 @@ class Login extends Component {
         };
     }
 
-    submit = async () => {
+    submit = async (e) => {
+        console.log(e);
         const { username, password } = this.state
         this.setState({ err:"" })
         try {
@@ -38,7 +39,7 @@ class Login extends Component {
             }
         }
     }
-
+    
     handleShowPassword = () => {
         this.setState({
             isShowPassword: !this.state.isShowPassword
@@ -55,7 +56,7 @@ class Login extends Component {
             
             <h2 id="headerTitle">Login</h2>
             <div>
-            <div className="row">
+            <div className="rowWapper">
                 <label>Username</label>
                 <input 
                     value={username} 
@@ -65,9 +66,9 @@ class Login extends Component {
                 />
             </div>  
 
-            <div className="row" style={{marginLeft: '12px'}}>
+            <div className="rowWapper">
                 <label>Password</label>
-                <div>
+                <div className="passwordWrapper">
                     <input 
                         value={password} 
                         onChange={(text)=>this.setState({password: text.target.value})}
@@ -83,8 +84,8 @@ class Login extends Component {
             </div>  
 
             {err ? <p className="error">{err}</p> : <p style={{color:"#fff"}}>NULL</p>}
-            <div id="button" className="row">
-            <button 
+            <div id="button" className="rowWapper">
+            <button
                 onClick={this.submit} 
                 className="btnAAA"
             >Sign in</button>
