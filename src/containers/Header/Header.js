@@ -27,7 +27,7 @@ class Header extends Component {
                 {/* nút logout */}
 
                 <div className="languages">
-                    <span className="welcome"><FormattedMessage id="homeheader.welcome"/> {userInfo.firstName && userInfo.firstName}  {userInfo.lastName && userInfo.lastName}!</span>
+                    <span className="welcome"><FormattedMessage id="homeheader.welcome"/>{userInfo.lastName && userInfo.lastName} {userInfo.firstName && userInfo.firstName}!</span>
                     <span 
                         className={language === LANGUAGES.VI ? 'language-vi active': "language-vi"} 
                         onClick={()=> this.handleChangeLanguage(LANGUAGES.VI)}

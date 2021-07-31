@@ -1,6 +1,12 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService } from '../../services/userService'
-
+import { 
+    getAllCodeService, 
+    createUserService, 
+    getAllUser,
+    deleteUser,
+    editUser
+} from '../../services/userService'
+import { toast } from 'react-toastify'
 export const fetchGenderStart = () => {
     return async (dispatch) => {
         try {
@@ -44,12 +50,12 @@ export const fetchRoleStart = () => {
 
             let res = await getAllCodeService('ROLE')
             if(res && res.errCode === 0) {
-                dispatch(fetchRoleRuccess(res.data))
+                dispatch(fetchRoleSuccess(res.data))
             } else {
-                dispatch(fetchRoleRuccess())
+                dispatch(fetchRoleFailed())
             }
         }catch(e){
-            dispatch(fetchRoleRuccess())
+            dispatch(fetchRoleFailed())
             console.log("Fetch data failed", e)
         }
     }
@@ -73,12 +79,124 @@ export const fetchPositionFailed = () => ({
     type: actionTypes.FETCH_POSITION_FAIL
 })
 
-
-export const fetchRoleRuccess = (data) => ({
+export const fetchRoleSuccess = (data) => ({
     type: actionTypes.FETCH_ROLE_SUCCESS,
     data:data
 })
 
 export const fetchRoleFailed = () => ({
     type: actionTypes.FETCH_ROLE_FAIL
+})
+
+export const createUser = (data) => {
+    return async (dispatch) => {
+        try {
+
+            let res = await createUserService(data)
+            if(res && res.errCode === 0) {
+                toast.success("Create a user successed!")
+                dispatch(saveUserSuccess(res.data))
+                dispatch(fetchAllUsersStart())
+            } else {
+                toast.error("Something went rong :( !")
+                dispatch(saveUserFail())
+            }
+        }catch(e){
+            toast.error("Something went rong :( !")
+            dispatch(saveUserFail())
+            console.log("Fetch data failed", e)
+        }
+    }
+}
+
+export const saveUserSuccess = () => ({
+    type: actionTypes.CREATE_USER_SUCCESS
+})
+
+export const saveUserFail = () => ({
+    type: actionTypes.CREATE_USER_FAIL
+})
+
+export const fetchAllUsersStart = () => {
+    return async (dispatch) => {
+        try {
+
+            let res = await getAllUser('ALL')
+            if(res && res.errCode === 0) {
+                dispatch(fetchAllUsersnSuccess(res.users.reverse()))
+            } else {
+                dispatch(fetchAllUsersnFailed())
+            }
+        }catch(e){
+            dispatch(fetchAllUsersnFailed())
+            console.log("Fetch data failed", e)
+        }
+    }
+}
+
+export const fetchAllUsersnSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_USER_SUCCESS,
+    users: data
+})
+
+export const fetchAllUsersnFailed = () => ({
+    type:actionTypes.FETCH_ALL_USER_FAIL
+})
+
+export const deleteAUser = (userId) => {
+    return async (dispatch) => {
+        try {
+
+            let res = await deleteUser(userId)
+            if(res && res.errCode === 0) {
+                toast.warn("Delete user successed!")
+                dispatch(deleteUserSuccess(res.data))
+                dispatch(fetchAllUsersStart())
+            } else {
+                toast.error("Something went rong :( !")
+                dispatch(deleteUserFail())
+            }
+        }catch(e){
+            toast.error("Something went rong :( !")
+            dispatch(deleteUserFail())
+            console.log("Fetch data failed", e)
+        }
+    }
+}
+
+export const deleteUserSuccess = () => ({
+    type: actionTypes.DELETE_USER_SUCCESS
+})
+
+export const deleteUserFail = () => ({
+    type: actionTypes.DELETE_USER_FAIL
+})
+
+export const editAUser = (data) => {
+    return async (dispatch) => {
+        try {
+
+            let res = await editUser(data)
+            if(res && res.errCode === 0) {
+                toast.warn("Update user successed!")
+                dispatch(editUserSuccess(res.data))
+                dispatch(fetchAllUsersStart())
+            } else {
+                toast.error("Something went rong :( !")
+                dispatch(editUserFail())
+            }
+        }catch(e){
+            toast.error("Something went rong :( !")
+            dispatch(editUserFail())
+            console.log("Fetch data failed", e)
+        }
+    }
+}
+
+export const editUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS
+})
+
+export const editUserFail = () => ({
+    type: actionTypes.EDIT_USER_FAIL
 })

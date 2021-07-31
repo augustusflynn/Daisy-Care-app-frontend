@@ -50,6 +50,7 @@
         "role": "Role",
         "image": "Avatar",
         "save":"Save",
-        "upload": "Upload image"
+        "upload": "Upload image",
+        "edit": "Save change"
     }
 }
