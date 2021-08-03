@@ -33,3 +33,7 @@ export const editUser = (userInfo) => {
 export const getAllCodeService = (inputType) => {  
     return axios.get(`/api/allcode?type=${inputType}`)
 }
+
+export const getTopDoctorHomeService = (limit) => {
+    return axios.get(`/api/top-doctor-home?limit=${limit}`)
+}

@@ -19,7 +19,13 @@
         "child3": "Khám tổng quát",
         "child4": "Xét nghiệm y học",
         "child5": "Sức khỏe tinh thần",
-        "child6": "Khám nha khoa"
+        "child6": "Khám nha khoa",
+        "specialized-examination": "Chuyên khoa phổ biến",
+        "outstanding-medical-facility": "Cơ sở y tế nổi bật",
+        "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
+        "handbook": "Cẩm nang",
+        "media":"Truyền thông nói về ",
+        "watch-more": "Xem thêm"
     },
     "menu": {
         "admin": { 

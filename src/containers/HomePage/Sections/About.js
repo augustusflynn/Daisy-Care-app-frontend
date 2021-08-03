@@ -8,7 +8,7 @@ class About extends Component {
         return (
             <div className="section-share section-about">
                 <div className="section-about-header">
-                    Truyền thông nói về `APP NAME`
+                    <FormattedMessage id="banner.media" />  Daily Serve
                 </div>
                 <div className="section-about-content">
                     <div className="content-left">
@@ -16,13 +16,13 @@ class About extends Component {
                             width="100%" 
                             height="400px" 
                             src="https://www.youtube.com/embed/Ws-QlpSltr8" 
-                            title="YouTube video player" frameborder="0" 
+                            title="YouTube video player" frameBorder="0" 
                             allow="accelerometer; autoplay; 
                             clipboard-write; 
                             encrypted-media; 
                             gyroscope; 
                             picture-in-picture" 
-                            allowfullscreen
+                            allowFullScreen
                         ></iframe>
                     </div>
                     

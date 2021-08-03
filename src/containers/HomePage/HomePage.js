@@ -16,13 +16,18 @@ import HomeFooter from './HomeFooter';
 
 class HomePage extends Component {
     
+    handleAfterChange = (index) => {
+        console.log("CHECK", index)
+    }
+    
     render() {
         let settings = {
             dots: false,
             infinite: false,
             speed: 500,
             slidesToShow: 4,
-            slidesToScroll: 4
+            slidesToScroll:1,
+            afterChange: this.handleAfterChange
         };
 
         return (

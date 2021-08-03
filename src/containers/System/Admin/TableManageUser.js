@@ -3,6 +3,11 @@ import "./TableManageUser.scss"
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions'
 
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+// import style manually
+import 'react-markdown-editor-lite/lib/index.css';
+
 // import { getAllUser, createUserService, deleteUser, editUser } from '../../services/userService';
 // import ModalUser from './Modal'
 // import ModalEditUser from './ModalEditUser';
@@ -10,6 +15,15 @@ import * as actions from '../../../store/actions'
 
 // emitter xử  lí được cả thằng cha và thằng con
 // là 1 cái của nodejs
+
+// Initialize a markdown parser
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+  console.log('handleEditorChange', html, text);
+}
+
 
 class TableManageUser extends Component {
     constructor(props) {
@@ -23,7 +37,7 @@ class TableManageUser extends Component {
         this.props.fetchAllUserRedux()
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         if(prevProps.users !== this.props.users) {
             this.setState({
                 userRedux: this.props.users
@@ -42,6 +56,7 @@ class TableManageUser extends Component {
     render() {
         const { userRedux } = this.state
         return (
+            <React.Fragment>
             <table id="table-manage-user">
                 <tbody>
                 <tr>
@@ -76,7 +91,10 @@ class TableManageUser extends Component {
                 ))}
                 </tbody>
             </table>
-                    
+
+    <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+  
+            </React.Fragment>          
         );
     }
 

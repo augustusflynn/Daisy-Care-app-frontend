@@ -68,7 +68,7 @@ class HomeHeader extends Component {
                     </div>
                     <div className="search">
                             <i className="fas fa-search"/>
-                            <input type="text" placeholder="Tìm chuyên khoa khám bệnh"/>
+                            <input type="text" placeholder={language === LANGUAGES.VI  ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialty"}/> 
                         </div>
                     <div className="others-media">
                         <div className="ios-app"></div>
@@ -78,42 +78,42 @@ class HomeHeader extends Component {
                     <div className="options">
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="hospital"></div>
+                                <i className="fas fa-hospital hospital fa-2x"/>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child1"/></div>
                         </div>
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="ktx"></div>
+                                <i className="fas fa-mobile-alt ktx fa-2x"></i>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child2"/></div>
                         </div>
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="ktq"></div>
+                                <i className="fas fa-notes-medical fa-2x ktq"></i>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child3"/></div>
                         </div>
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="xnyh"></div>
+                                <i class="fas fa-stethoscope fa-2x xnyh"/>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child4"/></div>
                         </div>
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="sktt"></div>
+                                <i className="fas fa-hand-holding-heart sktt fa-2x"></i>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child5"/></div>
                         </div>
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <div className="knk"></div>
+                                <i className="fas fa-briefcase-medical fa-2x knk"></i>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child6"/></div>
                         </div>

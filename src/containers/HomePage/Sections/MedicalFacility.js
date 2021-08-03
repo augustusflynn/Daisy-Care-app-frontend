@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl'
 
 import Slider from "react-slick";
 
@@ -9,8 +10,8 @@ class MeicalFacility extends Component {
             <div className="section-share section-medical-facility">
                 <div className="section-container">
                     <div className="section-header">
-                        <span className="title-sec">Cơ sở y tế nổi bật</span>
-                        <button className="btn-sec">XEM THÊM</button>
+                        <span className="title-sec"><FormattedMessage id="banner.outstanding-medical-facility" /></span>
+                        <button className="btn-sec"><FormattedMessage id="banner.watch-more" /></button>
                     </div>
                 <div className="section-body">
                     <Slider {...this.props.settings}>

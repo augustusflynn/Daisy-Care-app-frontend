@@ -4,9 +4,11 @@ import {
     createUserService, 
     getAllUser,
     deleteUser,
-    editUser
+    editUser,
+    getTopDoctorHomeService
 } from '../../services/userService'
 import { toast } from 'react-toastify'
+
 export const fetchGenderStart = () => {
     return async (dispatch) => {
         try {
@@ -200,3 +202,31 @@ export const editUserSuccess = () => ({
 export const editUserFail = () => ({
     type: actionTypes.EDIT_USER_FAIL
 })
+
+export const fetchTopDoctor = (limit) => {
+    return async (dispatch) => {
+        try {
+            let res = await getTopDoctorHomeService(limit)
+            if(res && res.errCode === 0) {
+                dispatch(FetchTopDoctorSuccess(res.data))
+            } else {
+                toast.error("Something went rong :( !")
+                dispatch(FetchTopDoctorFail())
+            }
+        }catch(e){
+            console.log("Fetch data failed", e)
+            toast.error("Something went rong :( !")
+            dispatch(FetchTopDoctorFail())
+        }
+    }
+}
+
+export const FetchTopDoctorSuccess = (data) => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+    data: data
+})
+
+export const FetchTopDoctorFail = () => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_FAIL
+})
+

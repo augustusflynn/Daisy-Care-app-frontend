@@ -20,7 +20,7 @@
 
             .btnIcon {
                 font-size: 25px;
-                color: #777;
+                color: #23887c;
                 cursor: pointer;
             }
 
@@ -65,7 +65,7 @@
                 i {
                     font-size: 15px;
                     margin-right: 5px;
-                    color: #32c0d7;
+                    color: #23887c;
                 }
             }
 
@@ -196,14 +196,12 @@
             width: 125px;
             align-items: center;
             &:hover {
-                color: #49bce2;
+                color: #6eb3ab;
             } 
     
             .icon-child {
-
                 
                 .hospital {
-                    background: url("../../assets/images/kham_chuyenkhoa.png") center center no-repeat;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;
@@ -212,10 +210,11 @@
                     margin: 2px auto;
                     background-size: 32px;
                     border-radius: 50%;
+                    color: #23887c;
                 }
 
                 .ktx {
-                    background: url("../../assets/images/kham_tuxa.png") center center no-repeat;
+                    color: #23887c;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;
@@ -227,7 +226,7 @@
                 }
 
                 .ktq {
-                    background: url("../../assets/images/kham_tongquat.png") center center no-repeat;
+                    color: #23887c;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;
@@ -239,7 +238,7 @@
                 }
 
                 .xnyh {
-                    background: url("../../assets/images/dichvu_xetnghiem.png") center center no-repeat;
+                    color: #23887c;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;
@@ -251,7 +250,7 @@
                 }
 
                 .sktt {
-                    background: url("../../assets/images/suckhoe_tinhthan.png") center center no-repeat;
+                    color: #23887c;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;
@@ -263,7 +262,7 @@
                 }
 
                 .knk {
-                    background: url("../../assets/images/kham_nhakhoa.png") center center no-repeat;
+                    color: #23887c;
                     background-color: #fff;
                     width: 50px;
                     height: 50px;

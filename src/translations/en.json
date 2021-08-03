@@ -19,7 +19,13 @@
         "child3": "General examnitation",
         "child4": "Medical test",
         "child5": "Mental health",
-        "child6": "Dental examination"
+        "child6": "Dental examination",
+        "specialized-examination": "Specialized examination",
+        "outstanding-medical-facility": "Outstanding medical facility",
+        "outstanding-doctors": "Outstanding doctors",
+        "handbook": "Hand book",
+        "media":"About us on media",
+        "watch-more":"Find more"
     },
     "menu": {
         "admin": { 

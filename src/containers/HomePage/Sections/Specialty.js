@@ -10,8 +10,8 @@ class OutStandingDoctor extends Component {
             <div className="section-share section-specialty">
                 <div className="section-container">
                     <div className="section-header">
-                        <span className="title-sec" >Chuyên khoa phổ biến</span>
-                        <button className="btn-sec">XEM THÊM</button>
+                        <span className="title-sec" ><FormattedMessage id="banner.specialized-examination"/> </span>
+                        <button className="btn-sec"><FormattedMessage id="banner.watch-more" /></button>
                     </div>
                 <div className="section-body">
                     <Slider {...this.props.settings}>
