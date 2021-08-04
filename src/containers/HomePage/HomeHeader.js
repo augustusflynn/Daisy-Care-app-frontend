@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './HomeHeader.scss'
 import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux';
-import logo from "../../assets/images/bookingcare-2020.svg"
+import logo from "../../assets/images/logo.png"
 import { LANGUAGES } from '../../utils/constant'
 import { changeLanguageApp } from '../../store/actions' 
 
@@ -99,7 +99,7 @@ class HomeHeader extends Component {
 
                         <div className="options-child">
                             <div className="icon-child">
-                                <i class="fas fa-stethoscope fa-2x xnyh"/>
+                                <i className="fas fa-stethoscope fa-2x xnyh"/>
                             </div>
                             <div className="text-child text-center"><FormattedMessage id="banner.child4"/></div>
                         </div>

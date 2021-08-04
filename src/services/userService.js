@@ -37,3 +37,11 @@ export const getAllCodeService = (inputType) => {
 export const getTopDoctorHomeService = (limit) => {
     return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
+
+export const saveDoctorInfoService = (data) => {
+    return axios.post(`/api/save-info-doctors`, data)
+}
+
+export const getAllDoctors = () => {
+    return axios.get("/api/get-all-doctors")
+}
