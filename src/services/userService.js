@@ -45,3 +45,7 @@ export const saveDoctorInfoService = (data) => {
 export const getAllDoctors = () => {
     return axios.get("/api/get-all-doctors")
 }
+
+export const getDetailInfoDoctor = (id) => {
+    return axios.get(`/api/get-detail-doctors-by-id?id=${id}`)
+}

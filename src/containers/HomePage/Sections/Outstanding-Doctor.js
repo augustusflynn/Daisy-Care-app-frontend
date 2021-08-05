@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import * as actions from '../../../store/actions'
 import Slider from "react-slick";
 import { LANGUAGES } from '../../../utils'
 
-class Specialty extends Component {
+class OutStandingDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,6 +26,10 @@ class Specialty extends Component {
     componentDidMount() {
         this.props.loadTopDoctor(8)
     }
+
+    handleViewDetailDoctor = (item) => {
+        this.props.history.push(`/doctor/${item.id}`)
+    } 
 
     render() {
         const { arrDoctos } = this.state
@@ -47,7 +52,12 @@ class Specialty extends Component {
                                 imgBase64 = new Buffer(item.image, 'base64').toString('binary')
                             }
 
-                            return (<div className="section-customize" key={i}>
+                            return (
+                            <div 
+                                className="section-customize" 
+                                key={i}
+                                onClick={() => this.handleViewDetailDoctor(item)}
+                            >
                                 <div className="customize-border">
                                     <div className="outer-bg">
                                         <div 
@@ -86,4 +96,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

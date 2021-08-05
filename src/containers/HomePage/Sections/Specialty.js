@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Slider from "react-slick";
 
-class OutStandingDoctor extends Component {
+class Specialty extends Component {
     render() {
         return (
             <div className="section-share section-specialty">
@@ -71,4 +71,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
