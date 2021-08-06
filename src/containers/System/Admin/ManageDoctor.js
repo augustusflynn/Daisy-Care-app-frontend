@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import "./ManageDoctor.scss"
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions'
-import  { CRUD_ACTIONS, LANGUAGES } from '../../../utils'
+import { CRUD_ACTIONS, LANGUAGES } from '../../../utils'
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
- 
+import { FormattedMessage } from 'react-intl'
+
 import Select from 'react-select'
 import { getDetailInfoDoctor } from '../../../services/userService'
 
@@ -32,14 +33,14 @@ class ManageDoctor extends Component {
 
     componentDidUpdate(prevProps) {
         const { allDoctors, language } = this.props
-        if(prevProps.allDoctors !== allDoctors) {
+        if (prevProps.allDoctors !== allDoctors) {
             let dataSelect = this.buildInputDataSelect(allDoctors)
             this.setState({
                 listDoctos: dataSelect
             })
         }
 
-        if(prevProps.language !== language) {
+        if (prevProps.language !== language) {
             let dataSelect = this.buildInputDataSelect(allDoctors)
             this.setState({
                 listDoctos: dataSelect
@@ -51,13 +52,13 @@ class ManageDoctor extends Component {
         const { language } = this.props
         let result = [];
 
-        if(data && data.length > 0) {
-            for(let i = 0; i  < data.length; i++) {
+        if (data && data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
                 let obj = {}
-                
+
                 let labelVi = `${data[`${i}`].lastName} ${data[`${i}`].firstName}`
                 let labelEn = `${data[`${i}`].firstName} ${data[`${i}`].lastName}`
-                
+
                 obj.label = language === LANGUAGES.VI ? labelVi : labelEn
                 obj.value = data[`${i}`].id
 
@@ -75,16 +76,16 @@ class ManageDoctor extends Component {
     }
 
     handleSaveContentMarkdown = () => {
-        const { 
-            contentHTML, 
-            contentMarkdown, 
-            description, 
+        const {
+            contentHTML,
+            contentMarkdown,
+            description,
             selectedDoctor,
             action
         } = this.state
 
         console.log("check: ", selectedDoctor)
-            
+
         this.props.saveInfoDoctorRedux({
             contentHTML: contentHTML,
             contentMarkdown: contentMarkdown,
@@ -99,7 +100,7 @@ class ManageDoctor extends Component {
         this.setState({ selectedDoctor })
 
         let res = await getDetailInfoDoctor(selectedDoctor.value)
-        if(res && res.errCode === 0 && res.data.Markdown) {
+        if (res && res.errCode === 0 && res.data.Markdown) {
             let mardown = res.data.Markdown
             this.setState({
                 contentHTML: mardown.contentHTML,
@@ -124,7 +125,7 @@ class ManageDoctor extends Component {
     }
 
     render() {
-        const { 
+        const {
             selectedDoctor,
             description,
             listDoctos,
@@ -134,23 +135,27 @@ class ManageDoctor extends Component {
         return (
             <div className="manage-doctor-container">
                 <div className="manage-doctor-title">
-                    Tạo thêm thông tin bác sĩ
+                    <FormattedMessage id="manage-doctor.add-a-doctor" />
                 </div>
                 <div className="more-info">
 
                     <div className="content-left form-group">
-                        <label className="">Chọn bác sĩ</label>
+                        <label className="">
+                            <FormattedMessage id="manage-doctor.choose-a-doctor" />
+                        </label>
                         <Select
                             value={selectedDoctor}
                             onChange={this.handleChangeSelect}
                             options={listDoctos}
                         />
                     </div>
-               
+
                     <div className="content-right">
-                        <label>Thông tin giới thiệu</label>
-                        <textarea 
-                            rows={4} 
+                        <label>
+                            <FormattedMessage id="manage-doctor.intro-info" />
+                        </label>
+                        <textarea
+                            rows={4}
                             className="form-control"
                             onChange={this.handleOnChangeTextDescription}
                             value={description}
@@ -160,36 +165,36 @@ class ManageDoctor extends Component {
                     </div>
                 </div>
                 <div className="manage-doctor-editor">
-                    <MdEditor 
-                        style={{ height: '500px' }} 
-                        renderHTML={text => mdParser.render(text)} 
-                        onChange={this.handleEditorChange} 
+                    <MdEditor
+                        style={{ height: '500px' }}
+                        renderHTML={text => mdParser.render(text)}
+                        onChange={this.handleEditorChange}
                         value={contentMarkdown}
                     />
                 </div>
                 {
                     hasOldData ? (
-                        <button 
+                        <button
                             className="save-content-doctor"
                             onClick={this.handleSaveContentMarkdown}
                         >
                             <span>
-                                Sửa thông tin
+                                <FormattedMessage id="manage-doctor.edit" />
                             </span>
                         </button>
                     ) : (
-                        <button 
+                        <button
                             className="create-content-doctor"
                             onClick={this.handleSaveContentMarkdown}
                         >
                             <span>
-                                Lưu thông tin
+                                <FormattedMessage id="manage-doctor.save" />
                             </span>
                         </button>
                     )
                 }
-                
-            </div>          
+
+            </div>
         );
     }
 

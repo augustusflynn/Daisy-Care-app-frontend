@@ -18,32 +18,35 @@ class Login extends Component {
         };
     }
 
-    submit = async (e) => {
-        console.log(e);
+    submit = async () => {
         const { username, password } = this.state
-        this.setState({ err:"" })
+        this.setState({ err: "" })
         try {
             let data = await handleLogin(username, password)
-            if( data && data.errCode !== 0){
+            if (data && data.errCode !== 0) {
                 this.setState({ err: data.message })
             }
-            if(data && data.errCode === 0) {
+            if (data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.user);
             }
-        } catch(err) {
-            if(err.response)
-            {
-                if(err.response.data){
+        } catch (err) {
+            if (err.response) {
+                if (err.response.data) {
                     this.setState({ err: err.response.data.message })
                 }
             }
         }
     }
-    
+
     handleShowPassword = () => {
         this.setState({
             isShowPassword: !this.state.isShowPassword
         })
+    }
+
+    onKeyPress = (e) => {
+        if (e.keyCode == 13)
+            this.submit()
     }
 
     render() {
@@ -53,48 +56,49 @@ class Login extends Component {
             <div className="login-bg">
 
                 <div id="loginform">
-            
-            <h2 id="headerTitle">Login</h2>
-            <div>
-            <div className="rowWapper">
-                <label>Username</label>
-                <input 
-                    value={username} 
-                    onChange={(text)=>this.setState({username: text.target.value})}
-                    placeholder="username"
-                    type="text" 
-                />
-            </div>  
 
-            <div className="rowWapper">
-                <label>Password</label>
-                <div className="passwordWrapper">
-                    <input 
-                        value={password} 
-                        onChange={(text)=>this.setState({password: text.target.value})}
-                        placeholder="password"
-                        type={isShowPassword ? "text" : "password"}
-                    />
-                    <span
-                        onClick={this.handleShowPassword}
-                    >
-                        <i className={ isShowPassword ? "far fa-eye": "far fa-eye-slash"}></i>
-                    </span>
-                </div>
-            </div>  
+                    <h2 id="headerTitle">Login</h2>
+                    <div>
+                        <div className="rowWapper">
+                            <label>Username</label>
+                            <input
+                                value={username}
+                                onChange={(text) => this.setState({ username: text.target.value })}
+                                placeholder="username"
+                                type="text"
+                            />
+                        </div>
 
-            {err ? <p className="error">{err}</p> : <p style={{color:"#fff"}}>NULL</p>}
-            <div id="button" className="rowWapper">
-            <button
-                onClick={this.submit} 
-                className="btnAAA"
-            >Sign in</button>
-            
-            </div>
-            </div>
+                        <div className="rowWapper">
+                            <label>Password</label>
+                            <div className="passwordWrapper">
+                                <input
+                                    value={password}
+                                    onChange={(text) => this.setState({ password: text.target.value })}
+                                    placeholder="password"
+                                    type={isShowPassword ? "text" : "password"}
+                                    onKeyDown={this.onKeyPress}
+                                />
+                                <span
+                                    onClick={this.handleShowPassword}
+                                >
+                                    <i className={isShowPassword ? "far fa-eye" : "far fa-eye-slash"}></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        {err ? <p className="error">{err}</p> : <p style={{ color: "#fff" }}>NULL</p>}
+                        <div id="button" className="rowWapper">
+                            <button
+                                onClick={this.submit}
+                                className="btnAAA"
+                            >Sign in</button>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-         )
+        )
     }
 }
 

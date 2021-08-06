@@ -2,7 +2,7 @@
     "homeheader": {
         "specialty": "Chuyên khoa",
         "search-doctor": "Tìm bác sĩ theo chuyên khoa",
-        "health-facility": "Cơ sở y tế" ,
+        "health-facility": "Cơ sở y tế",
         "select-room": "Phòng khám",
         "doctor": "Bác sĩ",
         "select-doctor": "Chọn bác sĩ giỏi",
@@ -24,11 +24,11 @@
         "outstanding-medical-facility": "Cơ sở y tế nổi bật",
         "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
         "handbook": "Cẩm nang",
-        "media":"Truyền thông nói về ",
+        "media": "Truyền thông nói về ",
         "watch-more": "Xem thêm"
     },
     "menu": {
-        "admin": { 
+        "admin": {
             "manage-user": "Người dùng",
             "manage-doctor": "Quản lý bác sĩ",
             "manage-admin": "Quán lý admin",
@@ -40,10 +40,12 @@
             "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
+        },
+        "doctor": {
+            "manage-schedule": "Quản lý lịch khám bệnh"
         }
     },
-
-    "manage-user":{
+    "manage-user": {
         "add": "Thêm mới người dùng",
         "email": "Địa chỉ email",
         "password": "Mật khẩu",
@@ -55,8 +57,21 @@
         "position": "Chức danh",
         "role": "Vai trò",
         "image": "Ảnh đại diện",
-        "save":"Lưu người dùng",
+        "save": "Lưu người dùng",
         "upload": "tải ảnh lên",
         "edit": "Lưu thay đổi"
+    },
+    "manage-doctor": {
+        "add-a-doctor": "Tạo thêm thông tin bác sĩ",
+        "choose-a-doctor": "Chọn bác sĩ",
+        "intro-info": "Thông tin giới thiệu",
+        "edit": "Sửa thông tin",
+        "save": "Lưu thông tin"
+    },
+    "manage-schedule": {
+        "title": "Quản lý kế hoạch khám bệnh",
+        "select-doctor": "Chọn bác sĩ",
+        "select-day": "Chọn ngày",
+        "button": "Lưu thông tin"
     }
 }

@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
-import { 
-    getAllCodeService, 
-    createUserService, 
+import {
+    getAllCodeService,
+    createUserService,
     getAllUser,
     deleteUser,
     editUser,
@@ -19,12 +19,12 @@ export const fetchGenderStart = () => {
             })
 
             let res = await getAllCodeService('GENDER')
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data))
             } else {
                 dispatch(fetchGenderFailed())
             }
-        }catch(e){
+        } catch (e) {
             dispatch(fetchGenderFailed())
             console.log("Fetch data failed", e)
         }
@@ -36,12 +36,12 @@ export const fetchPostionStart = () => {
         try {
 
             let res = await getAllCodeService('POSITION')
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchPositionSuccess(res.data))
             } else {
                 dispatch(fetchPositionFailed())
             }
-        }catch(e){
+        } catch (e) {
             dispatch(fetchPositionFailed())
             console.log("Fetch data failed", e)
         }
@@ -53,12 +53,12 @@ export const fetchRoleStart = () => {
         try {
 
             let res = await getAllCodeService('ROLE')
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchRoleSuccess(res.data))
             } else {
                 dispatch(fetchRoleFailed())
             }
-        }catch(e){
+        } catch (e) {
             dispatch(fetchRoleFailed())
             console.log("Fetch data failed", e)
         }
@@ -67,7 +67,7 @@ export const fetchRoleStart = () => {
 
 export const fetchGenderSuccess = (data) => ({
     type: actionTypes.FETCH_GENDER_SUCCESS,
-    data:data
+    data: data
 })
 
 export const fetchGenderFailed = () => ({
@@ -76,7 +76,7 @@ export const fetchGenderFailed = () => ({
 
 export const fetchPositionSuccess = (data) => ({
     type: actionTypes.FETCH_POSITION_SUCCESS,
-    data:data
+    data: data
 })
 
 export const fetchPositionFailed = () => ({
@@ -85,7 +85,7 @@ export const fetchPositionFailed = () => ({
 
 export const fetchRoleSuccess = (data) => ({
     type: actionTypes.FETCH_ROLE_SUCCESS,
-    data:data
+    data: data
 })
 
 export const fetchRoleFailed = () => ({
@@ -97,7 +97,7 @@ export const createUser = (data) => {
         try {
 
             let res = await createUserService(data)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 toast.success("Create a user successed!")
                 dispatch(saveUserSuccess(res.data))
                 dispatch(fetchAllUsersStart())
@@ -105,7 +105,7 @@ export const createUser = (data) => {
                 toast.error("Something went rong :( !")
                 dispatch(saveUserFail())
             }
-        }catch(e){
+        } catch (e) {
             toast.error("Something went rong :( !")
             dispatch(saveUserFail())
             console.log("Fetch data failed", e)
@@ -126,12 +126,12 @@ export const fetchAllUsersStart = () => {
         try {
 
             let res = await getAllUser('ALL')
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchAllUsersnSuccess(res.users.reverse()))
             } else {
                 dispatch(fetchAllUsersnFailed())
             }
-        }catch(e){
+        } catch (e) {
             dispatch(fetchAllUsersnFailed())
             console.log("Fetch data failed", e)
         }
@@ -144,7 +144,7 @@ export const fetchAllUsersnSuccess = (data) => ({
 })
 
 export const fetchAllUsersnFailed = () => ({
-    type:actionTypes.FETCH_ALL_USER_FAIL
+    type: actionTypes.FETCH_ALL_USER_FAIL
 })
 
 export const deleteAUser = (userId) => {
@@ -152,7 +152,7 @@ export const deleteAUser = (userId) => {
         try {
 
             let res = await deleteUser(userId)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 toast.warn("Delete user successed!")
                 dispatch(deleteUserSuccess(res.data))
                 dispatch(fetchAllUsersStart())
@@ -160,7 +160,7 @@ export const deleteAUser = (userId) => {
                 toast.error("Something went rong :( !")
                 dispatch(deleteUserFail())
             }
-        }catch(e){
+        } catch (e) {
             toast.error("Something went rong :( !")
             dispatch(deleteUserFail())
             console.log("Fetch data failed", e)
@@ -181,7 +181,7 @@ export const editAUser = (data) => {
         try {
 
             let res = await editUser(data)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 toast.warn("Update user successed!")
                 dispatch(editUserSuccess(res.data))
                 dispatch(fetchAllUsersStart())
@@ -189,7 +189,7 @@ export const editAUser = (data) => {
                 toast.error("Update user info failed :( !")
                 dispatch(editUserFail())
             }
-        }catch(e){
+        } catch (e) {
             toast.error("Update user info failed :( !")
             dispatch(editUserFail())
             console.log("Fetch data failed", e)
@@ -209,7 +209,7 @@ export const fetchTopDoctor = (limit) => {
     return async (dispatch) => {
         try {
             let res = await getTopDoctorHomeService(limit)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
                     data: res.data
@@ -220,7 +220,7 @@ export const fetchTopDoctor = (limit) => {
                     type: actionTypes.FETCH_TOP_DOCTOR_FAIL
                 })
             }
-        }catch(e){
+        } catch (e) {
             console.log("Fetch data failed", e)
             toast.error("Something went rong :( !")
             dispatch({
@@ -234,7 +234,7 @@ export const fetchALLDoctor = () => {
     return async (dispatch) => {
         try {
             let res = await getAllDoctors()
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
                     data: res.data
@@ -245,7 +245,7 @@ export const fetchALLDoctor = () => {
                     type: actionTypes.FETCH_ALL_DOCTOR_FAIL
                 })
             }
-        }catch(e){
+        } catch (e) {
             console.log("Fetch data failed", e)
             toast.error("Fetch data failed :( !")
             dispatch({
@@ -259,21 +259,44 @@ export const saveInfoDoctorRedux = (data) => {
     return async (dispatch) => {
         try {
             let res = await saveDoctorInfoService(data)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 toast.success("Saved data!")
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS
                 })
             } else {
                 toast.error("Save data failed :( !")
-                dispatch({type: actionTypes.SAVE_DETAIL_DOCTOR_FAIL})
+                dispatch({ type: actionTypes.SAVE_DETAIL_DOCTOR_FAIL })
             }
-        }catch(e){
+        } catch (e) {
             console.log("Fetch data failed", e)
             toast.error("Save data failed :( !")
-            dispatch({type: actionTypes.SAVE_DETAIL_DOCTOR_FAIL})
+            dispatch({ type: actionTypes.SAVE_DETAIL_DOCTOR_FAIL })
         }
     }
 }
 
-
+export const fetchAllcodeSchedule = () => {
+    return async (dispatch) => {
+        try {
+            let res = await getAllCodeService("TIME")
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                toast.error("Fetch data failed :( !")
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_FAIL
+                })
+            }
+        } catch (e) {
+            console.log("Fetch data failed", e)
+            toast.error("Fetch data failed :( !")
+            dispatch({
+                type: actionTypes.FETCH_ALLCODE_SCHEDULE_FAIL
+            })
+        }
+    }
+}

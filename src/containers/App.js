@@ -5,7 +5,6 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 
-
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils'
@@ -16,6 +15,7 @@ import System from '../routes/System';
 import HomePage from './HomePage/HomePage';
 import DetailDoctor from './HomePage/Patient/Doctor/DetailDoctor';
 import CustomScrollbars from '../components/CustomScrollbars'
+import Doctor from '../routes/Doctor';
 
 class App extends Component {
 
@@ -43,13 +43,14 @@ class App extends Component {
                 <Router history={history}>
                     <div className="main-container">
                         <div className="content-container">
-                            <CustomScrollbars style={{height: "100vh", width: "100%"}}>
+                            <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                                 <Switch>
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
-                                    <Route path="/doctor/:id" component={DetailDoctor}  />
+                                    <Route path="/doctor/:id" component={DetailDoctor} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>
@@ -61,7 +62,7 @@ class App extends Component {
                             closeButton={<CustomToastCloseButton />}
                         /> */}
 
-                        <ToastContainer 
+                        <ToastContainer
                             position="bottom-right"
                             autoClose={3000}
                             hideProgressBar={false}

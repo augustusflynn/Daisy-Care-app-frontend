@@ -3,14 +3,15 @@ export const path = {
     HOMEPAGE: '/home',
     LOGIN: '/login',
     LOG_OUT: '/logout',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    DOCTOR: '/doctor'
 };
 
 export const LANGUAGES = {
     VI: 'vi',
     EN: 'en'
 };
- 
+
 export const CRUD_ACTIONS = {
     CREATE: "CREATE",
     READ: "READ",
@@ -25,4 +26,10 @@ export const dateFormat = {
 export const YesNoObj = {
     YES: 'Y',
     NO: 'N'
+}
+
+export const USER_ROLE = {
+    ADMIN: "R1",
+    DOCTOR: "R2",
+    PATIENT: "R3"
 }

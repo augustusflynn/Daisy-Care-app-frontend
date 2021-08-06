@@ -24,11 +24,11 @@
         "outstanding-medical-facility": "Outstanding medical facility",
         "outstanding-doctors": "Outstanding doctors",
         "handbook": "Hand book",
-        "media":"About us on media",
-        "watch-more":"Find more"
+        "media": "About us on media",
+        "watch-more": "Find more"
     },
     "menu": {
-        "admin": { 
+        "admin": {
             "manage-user": "Users system",
             "manage-doctor": "Manage doctors",
             "manage-admin": "Manage admin",
@@ -40,10 +40,12 @@
             "manage-specialty": "Manage specialties",
             "handbook": "Handbook",
             "manage-handbook": "Manage handbook"
+        },
+        "doctor": {
+            "manage-schedule": " Manage schedule"
         }
     },
-
-    "manage-user":{
+    "manage-user": {
         "add": "Add a new user",
         "email": "Email",
         "password": "Password",
@@ -55,8 +57,21 @@
         "position": "Position",
         "role": "Role",
         "image": "Avatar",
-        "save":"Save",
+        "save": "Save",
         "upload": "Upload image",
         "edit": "Save change"
+    },
+    "manage-doctor": {
+        "add-a-doctor": "Add more info about doctor",
+        "choose-a-doctor": "Choose a doctor",
+        "intro-info": "Description",
+        "edit": "Edit information",
+        "save": "Save information"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor's plan",
+        "select-doctor": "Select a doctor",
+        "select-day": "Select day",
+        "button": "Save schedule"
     }
 }
