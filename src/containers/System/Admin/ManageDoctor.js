@@ -84,8 +84,6 @@ class ManageDoctor extends Component {
             action
         } = this.state
 
-        console.log("check: ", selectedDoctor)
-
         this.props.saveInfoDoctorRedux({
             contentHTML: contentHTML,
             contentMarkdown: contentMarkdown,

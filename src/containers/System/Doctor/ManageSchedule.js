@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import "./ManageSchedule.scss"
 import { FormattedMessage } from 'react-intl'
 import Select from 'react-select'
-import { getDetailInfoDoctor } from '../../../services/userService'
-import { CRUD_ACTIONS, LANGUAGES } from '../../../utils'
+import { LANGUAGES } from '../../../utils'
 import * as actions from '../../../store/actions'
 import DatePicker from '../../../components/Input/DatePicker'
-import moment from 'moment'
-
+import { toast } from 'react-toastify'
+import _ from 'lodash'
+import { saveBulkSchedule } from '../../../services/userService'
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -44,35 +44,21 @@ class ManageSchedule extends Component {
         }
 
         if (prevProps.allScheduleTime !== allScheduleTime) {
+            let data = allScheduleTime
+            if (data && data.length > 0) {
+                data = data.map((item) => ({
+                    ...item,
+                    isSelected: false
+                }))
+            }
             this.setState({
-                allSchedule: allScheduleTime
+                allSchedule: data
             })
         }
     }
 
     handleChangeSelect = async (selectedDoctor) => {
-
         this.setState({ selectedDoctor })
-
-        let res = await getDetailInfoDoctor(selectedDoctor.value)
-        if (res && res.errCode === 0 && res.data.Markdown) {
-            let mardown = res.data.Markdown
-            this.setState({
-                contentHTML: mardown.contentHTML,
-                contentMarkdown: mardown.contentMarkdown,
-                description: mardown.description,
-                hasOldData: true,
-                action: CRUD_ACTIONS.EDIT
-            })
-        } else {
-            this.setState({
-                contentHTML: "",
-                contentMarkdown: "",
-                description: "",
-                hasOldData: false,
-                action: CRUD_ACTIONS.CREATE
-            })
-        }
     }
 
     buildInputDataSelect = (data) => {
@@ -98,6 +84,68 @@ class ManageSchedule extends Component {
     handleChangeDayPicker = (date) => {
         this.setState({ currentDate: date[0] })
 
+    }
+
+    onHandleChoose = (item) => {
+        const { allSchedule } = this.state
+        if (allSchedule && allSchedule.length > 0) {
+            let copySchedule = allSchedule
+            copySchedule = allSchedule.map(i => {
+                if (i.id === item.id) {
+                    i.isSelected = !item.isSelected
+                }
+
+                return i
+            })
+
+            this.setState({
+                allSchedule: copySchedule
+            })
+        }
+    }
+
+    handleSubmit = async () => {
+        const { allSchedule, selectedDoctor, currentDate } = this.state
+        let result = []
+
+        if (!currentDate) {
+            toast.warn("Please choose date you want!")
+            return
+        }
+
+        if (selectedDoctor && selectedDoctor.length > 0) {
+            toast.warn("Please choose a doctor you want!")
+            return
+        }
+
+        let formatedDate = new Date(currentDate).getTime()
+        if (allSchedule && allSchedule.length > 0) {
+            let selectedTime = allSchedule.filter(item => item.isSelected === true)
+            if (selectedTime && selectedTime.length > 0) {
+                selectedTime.map(time => {
+                    let obj = {}
+                    obj.doctorId = selectedDoctor.value
+                    obj.date = formatedDate
+                    obj.timeType = time.keyMap
+
+                    result.push(obj)
+                })
+            } else {
+                toast.warn("Invalid selected time!")
+                return
+            }
+        }
+
+        let res = await saveBulkSchedule({
+            doctorId: selectedDoctor.value,
+            formatedDate: formatedDate,
+            arrSchedule: result
+        })
+        if (res && res.errCode === 0) {
+            toast.success(res.message)
+        } else {
+            toast.error(res.errMessage)
+        }
     }
 
     render() {
@@ -141,7 +189,8 @@ class ManageSchedule extends Component {
                                     return (
                                         <button
                                             key={index}
-                                            className="btn btn-schedule"
+                                            className={value.isSelected ? "btn btn-schedule active" : "btn btn-schedule"}
+                                            onClick={() => this.onHandleChoose(value)}
                                         >
                                             {language === LANGUAGES.VI ? valueVi : valueEn}
                                         </button>
@@ -150,7 +199,10 @@ class ManageSchedule extends Component {
                             }
                         </div>
 
-                        <button className="btn btn-primary btn-save-schedule">
+                        <button
+                            className="btn btn-primary btn-save-schedule"
+                            onClick={this.handleSubmit}
+                        >
                             <FormattedMessage id="manage-schedule.button" />
                         </button>
                     </div>

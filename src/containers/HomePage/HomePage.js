@@ -15,26 +15,21 @@ import HomeFooter from './HomeFooter';
 
 
 class HomePage extends Component {
-    
-    handleAfterChange = (index) => {
-        console.log("CHECK", index)
-    }
-    
+
     render() {
         let settings = {
             dots: false,
             infinite: false,
             speed: 500,
             slidesToShow: 4,
-            slidesToScroll:1,
-            afterChange: this.handleAfterChange
+            slidesToScroll: 1
         };
 
         return (
             <div>
-                <HomeHeader isShowBanner={true}/>
-                <Specialty settings={settings}/>
-                <MedicalFacility settings={settings}/>
+                <HomeHeader isShowBanner={true} />
+                <Specialty settings={settings} />
+                <MedicalFacility settings={settings} />
                 <OutstandingDoctor settings={settings} />
                 <HandBook settings={settings} />
                 <About />

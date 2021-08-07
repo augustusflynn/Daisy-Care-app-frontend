@@ -72,6 +72,7 @@
         "title": "Quản lý kế hoạch khám bệnh",
         "select-doctor": "Chọn bác sĩ",
         "select-day": "Chọn ngày",
-        "button": "Lưu thông tin"
+        "button": "Lưu thông tin",
+        "schedule": "Không có lịch hẹn trong thời gian này! Vui lòng chọn thời gian khác."
     }
 }

@@ -4,6 +4,7 @@ import HomeHeader from '../../HomeHeader';
 import "./DetailDoctor.scss"
 import { getDetailInfoDoctor } from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils/constant';
+import DoctorSchedule from './DoctorSchedule';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -16,9 +17,9 @@ class DetailDoctor extends Component {
 
 
     async componentDidMount() {
-        if(this.props.match && this.props.match.params && this.props.match.params.id) {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let res = await getDetailInfoDoctor(this.props.match.params.id)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 this.setState({
                     detailDoctor: res.data
                 })
@@ -27,58 +28,62 @@ class DetailDoctor extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        
+
     }
 
     render() {
         const { detailDoctor } = this.state
         const { language } = this.props
-        
+
         let nameVi = "", nameEn = ""
 
-        if(detailDoctor.positionData) {
+        if (detailDoctor.positionData) {
             nameVi = `${detailDoctor.positionData.valueVi} ${detailDoctor.lastName} ${detailDoctor.firstName}`
             nameEn = `${detailDoctor.positionData.valueEn === "None" ? "" : detailDoctor.positionData.valueEn} ${detailDoctor.firstName} ${detailDoctor.lastName}`
         }
 
         return (
             <>
-                <HomeHeader isShowBanner={false}/>
+                <HomeHeader isShowBanner={false} />
                 <div className="doctor-detail-container">
                     <div className="intro-doctor">
-                        <div 
+                        <div
                             className="content-left"
-                            style={{ backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : "" })` }}
+                            style={{ backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : ""})` }}
                         >
 
                         </div>
 
                         <div className="content-right">
                             <div className="up">
-                                { language === LANGUAGES.VI ? nameVi : nameEn }    
+                                {language === LANGUAGES.VI ? nameVi : nameEn}
                             </div>
 
                             <div className="down">
-                                { 
+                                {
                                     (detailDoctor.Markdown && detailDoctor.Markdown.description) &&
-                                        <span>
-                                            {detailDoctor.Markdown.description}
-                                        </span>
+                                    <span>
+                                        {detailDoctor.Markdown.description}
+                                    </span>
                                 }
                             </div>
-                        
+
                         </div>
                     </div>
 
                     <div className="schedule-doctor">
+                        <div className="content-left">
+                            <DoctorSchedule doctorIdFromParent={this.props.match.params.id} />
+                        </div>
 
+                        <div clasName="content-right"></div>
                     </div>
 
                     <div className="detail-doctor">
-                        { detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
-                            <div 
+                        {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
+                            <div
                                 dangerouslySetInnerHTML={{
-                                    __html: detailDoctor.Markdown.contentHTML 
+                                    __html: detailDoctor.Markdown.contentHTML
                                 }}
                             />
                         )}

@@ -19,10 +19,15 @@
             border : 1px solid #a9a9a9;
             cursor : pointer;
 
+            &.active {
+                background-color: orange;
+                color           : #666;
+            }
+
         }
     }
 
     .btn-save-schedule {
-        margin-top: 20px
+        margin-top: 20px;
     }
 }

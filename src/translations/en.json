@@ -72,6 +72,7 @@
         "title": "Manage doctor's plan",
         "select-doctor": "Select a doctor",
         "select-day": "Select day",
-        "button": "Save schedule"
+        "button": "Save schedule",
+        "schedule": "Doesn't have schedule in this time! Please choose another time."
     }
 }

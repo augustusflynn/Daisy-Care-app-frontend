@@ -1,11 +1,11 @@
 import axios from '../axios'
 
-export const handleLogin = (userEmail, userPassword) => { 
+export const handleLogin = (userEmail, userPassword) => {
     return axios.post('/api/login', {
         email: userEmail,
         password: userPassword
     })
-} 
+}
 
 export const getAllUser = (userId) => {
     return axios.get(`/api/get-all-users?id=${userId}`)
@@ -15,13 +15,13 @@ export const createUserService = (data) => {
     return axios.post("/api/create-new-user", data);
 }
 
-export const deleteUser = (userId) =>{ 
+export const deleteUser = (userId) => {
     return axios.delete('/api/delete-user', {
         // headers: {
         //     Authorization: au
         // },
         data: {
-            id: userId 
+            id: userId
         }
     })
 }
@@ -30,7 +30,7 @@ export const editUser = (userInfo) => {
     return axios.put('/api/edit-user', userInfo)
 }
 
-export const getAllCodeService = (inputType) => {  
+export const getAllCodeService = (inputType) => {
     return axios.get(`/api/allcode?type=${inputType}`)
 }
 
@@ -48,4 +48,12 @@ export const getAllDoctors = () => {
 
 export const getDetailInfoDoctor = (id) => {
     return axios.get(`/api/get-detail-doctors-by-id?id=${id}`)
+}
+
+export const saveBulkSchedule = (data) => {
+    return axios.post(`/api/bulk-create-schedule`, data)
+}
+
+export const getScheduleDoctorByDate = (doctorId, date) => {
+    return axios.get(`/api/get-schedule-doctors-by-date?doctorId=${doctorId}&date=${date}`)
 }
