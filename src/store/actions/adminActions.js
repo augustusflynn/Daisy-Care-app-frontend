@@ -15,7 +15,7 @@ export const fetchGenderStart = () => {
     return async (dispatch) => {
         try {
             dispatch({
-                type: actionTypes.FETCH_GENDER_START
+                type: actionTypes.FETCH_INFO_START
             })
 
             let res = await getAllCodeService('GENDER')
@@ -297,6 +297,43 @@ export const fetchAllcodeSchedule = () => {
             dispatch({
                 type: actionTypes.FETCH_ALLCODE_SCHEDULE_FAIL
             })
+        }
+    }
+}
+
+export const getDoctorRequiredInfo = () => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_INFO_START })
+
+            let resPrice = await getAllCodeService('PRICE')
+            let resPayment = await getAllCodeService('PAYMENT')
+            let resProvince = await getAllCodeService('PROVINCE')
+
+            if (
+                resPrice && resPrice.errCode === 0 &&
+                resPayment && resPayment.errCode === 0 &&
+                resProvince && resProvince.errCode === 0
+            ) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resProvince: resProvince.data,
+                    resPayment: resPayment.data
+                }
+                dispatch({
+                    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS,
+                    data: data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAIL
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAIL
+            })
+            console.log("Fetch required doctor info failed", e)
         }
     }
 }

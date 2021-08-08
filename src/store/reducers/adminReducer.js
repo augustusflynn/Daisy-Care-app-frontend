@@ -8,12 +8,13 @@ const initialState = {
     users: [],
     topDoctors: [],
     allDoctors: [],
-    allScheduleTime: []
+    allScheduleTime: [],
+    requiredDoctorInfo: []
 }
 
 const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_GENDER_START:
+        case actionTypes.FETCH_INFO_START:
             return {
                 ...state,
                 isLoading: true
@@ -39,11 +40,13 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ALL_USER_SUCCESS:
             return {
                 ...state,
-                users: action.users
+                users: action.users,
+                isLoading: false
             }
         case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 topDoctors: action.data
             }
         case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
@@ -54,8 +57,16 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ALLCODE_SCHEDULE_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 allScheduleTime: action.data
             }
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                requiredDoctorInfo: action.data
+            }
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAIL:
         case actionTypes.FETCH_ALLCODE_SCHEDULE_FAIL:
         case actionTypes.FETCH_ALL_DOCTOR_FAIL:
         case actionTypes.FETCH_TOP_DOCTOR_FAIL:
@@ -68,7 +79,10 @@ const adminReducer = (state = initialState, action) => {
                 isLoading: false
             }
         default:
-            return state;
+            return {
+                ...state,
+                isLoading: false
+            }
     }
 }
 

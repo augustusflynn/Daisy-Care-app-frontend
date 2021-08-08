@@ -9,6 +9,7 @@ import DatePicker from '../../../components/Input/DatePicker'
 import { toast } from 'react-toastify'
 import _ from 'lodash'
 import { saveBulkSchedule } from '../../../services/userService'
+import moment from 'moment'
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -151,6 +152,8 @@ class ManageSchedule extends Component {
     render() {
         const { selectedDoctor, listDoctos, currentDate, allSchedule } = this.state
         const { language } = this.props
+        const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
+
         return (
             <div className="manage-schedule-container">
                 <div className="m-s-title">
@@ -177,7 +180,7 @@ class ManageSchedule extends Component {
                                 onChange={this.handleChangeDayPicker}
                                 className="form-control"
                                 value={currentDate}
-                                minDate={new Date()}
+                                minDate={yesterday}
                             />
                         </div>
 

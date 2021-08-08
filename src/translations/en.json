@@ -66,13 +66,25 @@
         "choose-a-doctor": "Choose a doctor",
         "intro-info": "Description",
         "edit": "Edit information",
-        "save": "Save information"
+        "save": "Save information",
+        "choose-a-price": "Choose price",
+        "payment": "Payment",
+        "choose-a-province": "Choose a province",
+        "clinic-name": "Clinic's name",
+        "clinic-address": "Clinic's address",
+        "note": "Note"
     },
     "manage-schedule": {
         "title": "Manage doctor's plan",
         "select-doctor": "Select a doctor",
         "select-day": "Select day",
-        "button": "Save schedule",
-        "schedule": "Doesn't have schedule in this time! Please choose another time."
+        "button": "Save schedule"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "none-schedule": "Doesn't have schedule in this time! Please choose another time."
+        },
+        "fee": "Choose and booking schedule ( free )"
     }
 }

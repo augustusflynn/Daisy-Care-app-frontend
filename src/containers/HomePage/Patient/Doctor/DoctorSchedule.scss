@@ -1,6 +1,5 @@
 .doctor-schedule-container {
-    border-right: 1px solid #23887c;
-    height      : 100%;
+    height: 100%;
 
     .all-schedule {
         select {
@@ -54,6 +53,17 @@
                 &:hover {
                     background-color: #23887c;
                     color           : #fff;
+                }
+            }
+
+            .book-fee {
+                span {
+                    color: #23887c;
+
+                    i {
+                        margin-right: 5px;
+                        font-size   : 1.5rem;
+                    }
                 }
             }
         }

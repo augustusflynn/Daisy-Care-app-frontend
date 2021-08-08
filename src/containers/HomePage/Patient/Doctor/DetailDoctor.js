@@ -18,7 +18,9 @@ class DetailDoctor extends Component {
 
     async componentDidMount() {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
-            let res = await getDetailInfoDoctor(this.props.match.params.id)
+            let doctorId = this.props.match.params.id
+
+            let res = await getDetailInfoDoctor(doctorId)
             if (res && res.errCode === 0) {
                 this.setState({
                     detailDoctor: res.data
