@@ -7,9 +7,7 @@ import { LANGUAGES } from '../../../utils'
 import * as actions from '../../../store/actions'
 import DatePicker from '../../../components/Input/DatePicker'
 import { toast } from 'react-toastify'
-import _ from 'lodash'
 import { saveBulkSchedule } from '../../../services/userService'
-import moment from 'moment'
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -123,14 +121,14 @@ class ManageSchedule extends Component {
         if (allSchedule && allSchedule.length > 0) {
             let selectedTime = allSchedule.filter(item => item.isSelected === true)
             if (selectedTime && selectedTime.length > 0) {
-                selectedTime.map(time => {
+                result.push(selectedTime.map(time => {
                     let obj = {}
                     obj.doctorId = selectedDoctor.value
                     obj.date = formatedDate
                     obj.timeType = time.keyMap
 
-                    result.push(obj)
-                })
+                    return obj
+                }))
             } else {
                 toast.warn("Invalid selected time!")
                 return

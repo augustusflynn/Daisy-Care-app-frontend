@@ -174,17 +174,45 @@ class ManageDoctor extends Component {
     }
 
     handleChangeSelect = async (selectedDoctor, name) => {
+        const { listPayment, listProvince, listPrice } = this.state
         this.setState({ selectedDoctor })
 
         let res = await getDetailInfoDoctor(selectedDoctor.value)
         if (res && res.errCode === 0 && res.data.Markdown) {
             let mardown = res.data.Markdown
+
+            let addressClinicId = '',
+                nameClinic = '',
+                note = '',
+                paymentId = '',
+                priceId = '',
+                provinceId = ''
+            let selectedPayment = {}, selectedPrice = {}, selectedProvince = {}
+            if (res.data.Doctor_Info) {
+                addressClinicId = res.data.Doctor_Info.addressClinicId
+                nameClinic = res.data.Doctor_Info.nameClinic
+                note = res.data.Doctor_Info.note
+                paymentId = res.data.Doctor_Info.paymentId
+                priceId = res.data.Doctor_Info.priceId
+                provinceId = res.data.Doctor_Info.provinceId
+
+                selectedPayment = listPayment.find(item => item.value === paymentId)
+                selectedPrice = listPrice.find(item => item.value === priceId)
+                selectedProvince = listProvince.find(item => item.value === provinceId)
+            }
+
             this.setState({
                 contentHTML: mardown.contentHTML,
                 contentMarkdown: mardown.contentMarkdown,
                 description: mardown.description,
                 hasOldData: true,
-                action: CRUD_ACTIONS.EDIT
+                action: CRUD_ACTIONS.EDIT,
+                selectedPayment: selectedPayment,
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince,
+                nameClinic: nameClinic,
+                clinicAddress: addressClinicId,
+                note: note,
             })
         } else {
             this.setState({
@@ -192,7 +220,13 @@ class ManageDoctor extends Component {
                 contentMarkdown: "",
                 description: "",
                 hasOldData: false,
-                action: CRUD_ACTIONS.CREATE
+                action: CRUD_ACTIONS.CREATE,
+                selectedPayment: null,
+                selectedPrice: null,
+                selectedProvince: null,
+                nameClinic: '',
+                clinicAddress: '',
+                note: '',
             })
         }
     }

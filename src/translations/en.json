@@ -86,5 +86,18 @@
             "none-schedule": "Doesn't have schedule in this time! Please choose another time."
         },
         "fee": "Choose and booking schedule ( free )"
+    },
+    "extra-doctor-info": {
+        "clinic-address": "Clinic's address",
+        "view-detail": "View detail",
+        "price": "Price",
+        "hide-detail": "Hide price table",
+        "payment": "Payment"
+    },
+    "modal-booking": {
+        "booking": "Booking schedule",
+        "submit": "Confirm",
+        "cancel": "Cancel",
+        "free-booking": "Free booking"
     }
 }

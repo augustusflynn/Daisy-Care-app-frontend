@@ -86,5 +86,18 @@
             "none-schedule": "Không có lịch hẹn trong thời gian này! Vui lòng chọn thời gian khác."
         },
         "fee": "Chọn và đặt lịch ( miễn phí )"
+    },
+    "extra-doctor-info": {
+        "clinic-address": "Địa chỉ phòng khám",
+        "view-detail": "Xem chi tiết",
+        "price": "Giá khám",
+        "hide-detail": "Ẩn bảng giá",
+        "payment": "Phương thức thanh toán"
+    },
+    "modal-booking": {
+        "booking": "Thông tin đặt lịch khám bệnh",
+        "submit": "Đặt lịch",
+        "cancel": "Hủy",
+        "free-booking": "Miễn phí đặt lịch"
     }
 }
