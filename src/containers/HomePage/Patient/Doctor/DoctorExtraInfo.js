@@ -4,7 +4,6 @@ import { LANGUAGES } from '../../../../utils/constant';
 import './DoctorExtraInfo.scss'
 import { FormattedMessage } from 'react-intl'
 import { getExtraInfoDoctorById } from '../../../../services/userService'
-// import { toast } from 'react-toastify';
 import NumberFormat from 'react-number-format';
 
 class DoctorExtraInfo extends Component {

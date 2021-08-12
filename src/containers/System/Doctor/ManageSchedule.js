@@ -82,7 +82,6 @@ class ManageSchedule extends Component {
 
     handleChangeDayPicker = (date) => {
         this.setState({ currentDate: date[0] })
-
     }
 
     onHandleChoose = (item) => {
@@ -121,14 +120,15 @@ class ManageSchedule extends Component {
         if (allSchedule && allSchedule.length > 0) {
             let selectedTime = allSchedule.filter(item => item.isSelected === true)
             if (selectedTime && selectedTime.length > 0) {
-                result.push(selectedTime.map(time => {
+                selectedTime.map(time => {
                     let obj = {}
                     obj.doctorId = selectedDoctor.value
                     obj.date = formatedDate
                     obj.timeType = time.keyMap
 
+                    result.push(obj)
                     return obj
-                }))
+                })
             } else {
                 toast.warn("Invalid selected time!")
                 return

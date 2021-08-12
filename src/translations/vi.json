@@ -59,7 +59,9 @@
         "image": "Ảnh đại diện",
         "save": "Lưu người dùng",
         "upload": "tải ảnh lên",
-        "edit": "Lưu thay đổi"
+        "edit": "Lưu thay đổi",
+        "reason": "Lý do khám",
+        "birthday": "Ngày sinh"
     },
     "manage-doctor": {
         "add-a-doctor": "Tạo thêm thông tin bác sĩ",
@@ -99,5 +101,15 @@
         "submit": "Đặt lịch",
         "cancel": "Hủy",
         "free-booking": "Miễn phí đặt lịch"
+    },
+    "verify-email": {
+        "wait": "Quý khách vui lòng đợi trong giây lát, hệ thông đang xử lý!",
+        "succeed": "Thành công",
+        "failed": "Thất bại",
+        "wrong": "Có vẻ như là lịch hẹn không tồn tại hoặc hệ thống đã gặp trục trặc.",
+        "hotline": "Nếu quý khách cần hỗ trợ vui lòng liên hệ hotline: 0913115560",
+        "email": "Hoặc gửi thư điện tử qua: huytung139@gmail.com",
+        "thanks": "Cảm ơn đã lựa chọn Daily Care!",
+        "regard": "Chúc quý khách một ngày vui vẻ."
     }
 }

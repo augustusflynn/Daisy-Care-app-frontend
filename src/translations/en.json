@@ -59,7 +59,9 @@
         "image": "Avatar",
         "save": "Save",
         "upload": "Upload image",
-        "edit": "Save change"
+        "edit": "Save change",
+        "reason": "Reason for booking",
+        "birthday": "Birthday"
     },
     "manage-doctor": {
         "add-a-doctor": "Add more info about doctor",
@@ -99,5 +101,15 @@
         "submit": "Confirm",
         "cancel": "Cancel",
         "free-booking": "Free booking"
+    },
+    "verify-email": {
+        "wait": "Please wait for a moment, the system is verifying!",
+        "succeed": "Successfully",
+        "failed": "Failed",
+        "wrong": "It may be schedule doesn't exist or error from the server.",
+        "hotline": "If you have any questions, please call hotline: 0913115560",
+        "email": "Or you can send email: huytung139@gmail.com",
+        "thanks": "Thanks for choosing Daily Care!",
+        "regard": "Have a good day."
     }
 }
