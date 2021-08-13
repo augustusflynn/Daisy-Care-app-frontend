@@ -65,7 +65,7 @@ class OutStandingDoctor extends Component {
                                                     style={{ backgroundImage: `url(${imgBase64})` }}
                                                 />
                                             </div>
-                                            <div className="position text-center">
+                                            <div className="position text-center text-hover">
                                                 <div>{language === LANGUAGES.EN ? nameEn : nameVi}</div>
                                                 <div>Cơ xương khớp</div>
                                             </div>

@@ -38,12 +38,12 @@ export const getTopDoctorHomeService = (limit) => {
     return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
 
-export const saveDoctorInfoService = (data) => {
-    return axios.post(`/api/save-info-doctors`, data)
-}
-
 export const getAllDoctors = () => {
     return axios.get("/api/get-all-doctors")
+}
+
+export const saveDoctorInfoService = (data) => {
+    return axios.post(`/api/save-info-doctors`, data)
 }
 
 export const getDetailInfoDoctor = (id) => {
@@ -72,4 +72,20 @@ export const postBookingAppointment = (data) => {
 
 export const postVerifyBooking = (data) => {
     return axios.post(`/api/verifying-book-appointment`, data)
+}
+
+export const createNewSpecialty = (data) => {
+    return axios.post(`/api/create-a-new-specialty`, data)
+}
+
+export const getTopSpecialties = (limit) => {
+    return axios.get(`/api/get-top-specialties-home?limit=${limit}`)
+}
+
+export const getAllSpecialties = () => {
+    return axios.get("/api/get-all-specialties")
+}
+
+export const getDetailSpecialtyById = (data) => {
+    return axios.get(`/api/get-detail-specialty-by-id/?id=${data.id}&location=${data.location}`)
 }

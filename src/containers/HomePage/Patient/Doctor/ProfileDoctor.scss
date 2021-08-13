@@ -31,4 +31,15 @@
             }
         }
     }
+
+    .pf-btn-view-more {
+        padding-left: 15px;
+        cursor      : pointer;
+        font-size   : 15px;
+
+        a {
+            color          : #23887c !important;
+            text-decoration: none;
+        }
+    }
 }

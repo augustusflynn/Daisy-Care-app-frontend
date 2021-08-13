@@ -56,7 +56,7 @@ class ManageSchedule extends Component {
         }
     }
 
-    handleChangeSelect = async (selectedDoctor) => {
+    handleChangeSelect = (selectedDoctor) => {
         this.setState({ selectedDoctor })
     }
 

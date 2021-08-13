@@ -7,6 +7,7 @@ import { getProfileDoctorById } from '../../../../services/userService'
 import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import moment from 'moment';
+import { Link } from 'react-router-dom'
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -69,7 +70,7 @@ class ProfileDoctor extends Component {
 
     render() {
         const { dataProfile } = this.state
-        const { language, isShowDoctorDescription, dataTime } = this.props
+        const { language, isShowDoctorDescription, dataTime, isShowLink, isShowPrice, doctorId } = this.props
 
         let name = '', priceVi = '', priceEn = ''
         if (dataProfile) {
@@ -114,16 +115,25 @@ class ProfileDoctor extends Component {
                     </div>
                 </div>
 
-                <div className="price">
-                    Giá khám: {"  "}
-                    <NumberFormat
-                        value={language === LANGUAGES.VI ? priceVi : priceEn}
-                        displayType='text'
-                        thousandSeparator={true}
-                        suffix={language === LANGUAGES.VI ? 'đ' : '$'}
-                        style={{ color: "#333" }}
-                    />
-                </div>
+                {isShowLink && (
+                    <div className='pf-btn-view-more'>
+                        <Link to={`/detail-doctor/${doctorId}`}><FormattedMessage id="banner.watch-more" /></Link>
+                    </div>
+                )}
+
+                {isShowPrice && (
+                    <div className="price">
+                        <FormattedMessage id="extra-doctor-info.price" />: {"  "}
+                        <NumberFormat
+                            value={language === LANGUAGES.VI ? priceVi : priceEn}
+                            displayType='text'
+                            thousandSeparator={true}
+                            suffix={language === LANGUAGES.VI ? 'đ' : '$'}
+                            style={{ color: "#333" }}
+                        />
+                    </div>
+                )}
+
             </div>
         );
     }

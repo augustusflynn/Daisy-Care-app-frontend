@@ -12,7 +12,7 @@
         "welcome": "Welcome,"
     },
     "banner": {
-        "title1": "MEDICAL BACKGROUND",
+        "title1": "DAILY CARE",
         "title2": "COMPHREHENSIVE HEALTH CARE",
         "child1": "Specialized examination",
         "child2": "Remote examination",
@@ -74,7 +74,10 @@
         "choose-a-province": "Choose a province",
         "clinic-name": "Clinic's name",
         "clinic-address": "Clinic's address",
-        "note": "Note"
+        "note": "Note",
+        "select-specialty": "Select a specialty",
+        "select-clinic": "Select a clinic",
+        "none": "Sorry! This province, for now doesn't have any doctor."
     },
     "manage-schedule": {
         "title": "Manage doctor's plan",
@@ -93,7 +96,7 @@
         "clinic-address": "Clinic's address",
         "view-detail": "View detail",
         "price": "Price",
-        "hide-detail": "Hide price table",
+        "hide-detail": "Hide",
         "payment": "Payment"
     },
     "modal-booking": {
@@ -111,5 +114,9 @@
         "email": "Or you can send email: huytung139@gmail.com",
         "thanks": "Thanks for choosing Daily Care!",
         "regard": "Have a good day."
+    },
+    "manage-specialty": {
+        "specialty-img": "Specialty's image",
+        "save": "Save specialty"
     }
 }

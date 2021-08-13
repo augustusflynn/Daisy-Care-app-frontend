@@ -12,7 +12,7 @@
         "welcome": "Xin chào, "
     },
     "banner": {
-        "title1": "NỀN TẢNG Y TẾ",
+        "title1": "DAILY CARE",
         "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
         "child1": "Khám chuyên khoa",
         "child2": "Khám từ xa",
@@ -74,7 +74,10 @@
         "choose-a-province": "Chọn tỉnh thành",
         "clinic-name": "Tên phòng khám",
         "clinic-address": "Địa chỉ phòng khám",
-        "note": "Ghi chú"
+        "note": "Ghi chú",
+        "select-specialty": "Chọn chuyên khoa",
+        "select-clinic": "Chọn phòng khám",
+        "none": "Xin lỗi! Tỉnh thành này hiện không có bác sĩ nào."
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh",
@@ -93,7 +96,7 @@
         "clinic-address": "Địa chỉ phòng khám",
         "view-detail": "Xem chi tiết",
         "price": "Giá khám",
-        "hide-detail": "Ẩn bảng giá",
+        "hide-detail": "Ẩn bớt",
         "payment": "Phương thức thanh toán"
     },
     "modal-booking": {
@@ -111,5 +114,9 @@
         "email": "Hoặc gửi thư điện tử qua: huytung139@gmail.com",
         "thanks": "Cảm ơn đã lựa chọn Daily Care!",
         "regard": "Chúc quý khách một ngày vui vẻ."
+    },
+    "manage-specialty": {
+        "specialty-img": "Ảnh chuyên khoa",
+        "save": "Lưu chuyên khoa"
     }
 }
