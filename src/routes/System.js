@@ -6,10 +6,11 @@ import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from '../containers/Header/Header';
 import ManageDoctor from '../containers/System/Admin/ManageDoctor';
 import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
+import ManageClinic from '../containers/System/Clinic/ManageClinic';
 
 class System extends Component {
     render() {
-        const { systemMenuPath, isLoggedIn } = this.props;
+        const { systemMenuPath, isLoggedIn, userInfo, doctorMenuPath } = this.props;
         return (
             <React.Fragment>
                 {isLoggedIn && <Header />}
@@ -20,7 +21,11 @@ class System extends Component {
                             <Route path="/system/user-redux" component={UserRedux} />
                             <Route path="/system/manage-doctor" component={ManageDoctor} />
                             <Route path="/system/manage-specialty" component={ManageSpecialty} />
-                            <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
+                            <Route path="/system/manage-clinic" component={ManageClinic} />
+
+                            <Route component={() => {
+                                return (<Redirect to={userInfo && userInfo.roleId === "R1" ? systemMenuPath : doctorMenuPath} />)
+                            }} />
                         </Switch>
                     </div>
                 </div>
@@ -32,7 +37,9 @@ class System extends Component {
 const mapStateToProps = state => {
     return {
         systemMenuPath: state.app.systemMenuPath,
-        isLoggedIn: state.user.isLoggedIn
+        doctorMenuPath: state.app.doctorMenuPath,
+        isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo
     };
 };
 

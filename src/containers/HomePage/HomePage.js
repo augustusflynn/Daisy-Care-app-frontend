@@ -9,10 +9,9 @@ import MedicalFacility from './Sections/MedicalFacility';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import OutstandingDoctor from './Sections/Outstanding-Doctor';
-import HandBook from './Sections/HandBook';
 import About from './Sections/About';
 import HomeFooter from './HomeFooter';
-
+import CovidSection from './Sections/Covid'
 
 class HomePage extends Component {
 
@@ -31,7 +30,7 @@ class HomePage extends Component {
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
                 <OutstandingDoctor settings={settings} />
-                <HandBook settings={settings} />
+                <CovidSection />
                 <About />
                 <HomeFooter />
             </div>

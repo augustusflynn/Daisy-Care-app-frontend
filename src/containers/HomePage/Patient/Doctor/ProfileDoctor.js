@@ -26,10 +26,6 @@ class ProfileDoctor extends Component {
     }
 
     async componentDidUpdate(prevProps) {
-        // const { doctorId } = this.props
-
-        // if(prevProps.doctorId !== doctorId)
-        //     let doctorInfo = this.getInfoDoctor(id)
 
     }
 
@@ -37,7 +33,6 @@ class ProfileDoctor extends Component {
         let result = {}
         if (id) {
             let res = await getProfileDoctorById(id)
-
             if (res && res.errCode === 0) {
                 result = res.data
             }
@@ -46,6 +41,17 @@ class ProfileDoctor extends Component {
         return result
     }
 
+    getProvinceName = () => {
+        const { dataProfile } = this.state
+        const { language } = this.props
+        let name = ''
+        if (dataProfile && dataProfile.Doctor_Info && dataProfile.Doctor_Info.provinceData) {
+            let data = dataProfile.Doctor_Info.provinceData
+            name = language === LANGUAGES.VI ? data.valueVi : data.valueEn
+        }
+
+        return name
+    }
 
     renderTimeBooking = (dataTime) => {
         const { language } = this.props
@@ -71,7 +77,6 @@ class ProfileDoctor extends Component {
     render() {
         const { dataProfile } = this.state
         const { language, isShowDoctorDescription, dataTime, isShowLink, isShowPrice, doctorId } = this.props
-
         let name = '', priceVi = '', priceEn = ''
         if (dataProfile) {
             if (language === LANGUAGES.VI)
@@ -114,7 +119,12 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-
+                <div className="detail-doctor-location">
+                    <i className="fas fa-map-marker-alt" />
+                    <span>
+                        {this.getProvinceName()}
+                    </span>
+                </div>
                 {isShowLink && (
                     <div className='pf-btn-view-more'>
                         <Link to={`/detail-doctor/${doctorId}`}><FormattedMessage id="banner.watch-more" /></Link>

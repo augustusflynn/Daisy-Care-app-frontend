@@ -5,6 +5,7 @@ import { getTopSpecialties } from '../../../services/userService'
 import Slider from "react-slick";
 import { LANGUAGES } from '../../../utils/constant'
 import { withRouter } from 'react-router'
+import * as actions from '../../../store/actions'
 
 class Specialty extends Component {
     constructor(props) {
@@ -16,10 +17,14 @@ class Specialty extends Component {
     }
 
     async componentDidMount() {
-        let res = await getTopSpecialties(8)
-        if (res && res.errCode === 0) {
+        await this.props.fetchAllSpecialty()
+    }
+
+    componentDidUpdate(prevProps) {
+        const { allSpecialty } = this.props
+        if (prevProps.allSpecialty !== allSpecialty) {
             this.setState({
-                dataSpecialty: res.data
+                dataSpecialty: [...allSpecialty]
             })
         }
     }
@@ -78,11 +83,13 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        allSpecialty: state.admin.allSpecialty
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchAllSpecialty: () => dispatch(actions.fetchAllSpecialty())
     };
 };
 

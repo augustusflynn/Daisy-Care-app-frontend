@@ -5,7 +5,7 @@ import { getAllUser, createUserService, deleteUser, editUser } from '../../servi
 import ModalUser from './Modal'
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/index'
-
+import { withRouter } from 'react-router'
 // emitter xử  lí được cả thằng cha và thằng con
 // là 1 cái của nodejs
 
@@ -21,12 +21,17 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+        const { user, doctorMenuPath } = this.props
+        if (user && user.roleId === "R2")
+            this.props.history.replace(doctorMenuPath)
+        // } else {
         await this.getAllUserFromReact()
+        // }
     }
 
     getAllUserFromReact = async () => {
         let res = await getAllUser("ALL")
-        if(res && res.errCode === 0)
+        if (res && res.errCode === 0)
             this.setState({
                 arrUser: res.users
             })
@@ -43,7 +48,7 @@ class UserManage extends Component {
     createNewUser = async (data) => {
         try {
             let res = await createUserService(data)
-            if(res && res.errCode !== 0) {
+            if (res && res.errCode !== 0) {
                 alert(res.errMessage)
             } else {
                 alert("Created a new user!")
@@ -52,22 +57,21 @@ class UserManage extends Component {
 
                 emitter.emit('EVENT_CLEAR_MODAL_DATA') //có thể truyền data ngay sau string event
             }
-        }catch(e) {
+        } catch (e) {
             console.log(e)
         }
     }
 
     handleDeleteUser = async (user) => {
-        if(window.confirm("Are you sure wanna to delete this user ?")) 
-        {
+        if (window.confirm("Are you sure wanna to delete this user ?")) {
             try {
                 let res = await deleteUser(user.id)
-                if(res && res.errCode === 0) {
+                if (res && res.errCode === 0) {
                     await this.getAllUserFromReact()
                 } else {
                     alert(res.errMessage)
                 }
-            } catch(e) {
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -82,13 +86,13 @@ class UserManage extends Component {
     handleEditUser = async (user) => {
         try {
             let res = await editUser(user)
-            if(res && res.errCode === 0) {
+            if (res && res.errCode === 0) {
                 this.setState({ isOpenEditModal: false })
                 await this.getAllUserFromReact()
             } else {
                 alert(res.errMessage)
             }
-        }catch(e) {
+        } catch (e) {
             console.log(e)
         }
     }
@@ -97,14 +101,14 @@ class UserManage extends Component {
         const { arrUser, isOpenUserModal, isOpenEditModal, user } = this.state
         return (
             <div className="bg px-3">
-                <ModalUser 
-                    isOpen={isOpenUserModal} 
+                <ModalUser
+                    isOpen={isOpenUserModal}
                     toggle={() => this.handleToggle("isOpenUserModal")}
                     createNewUser={this.createNewUser}
                 />
-                {isOpenEditModal &&(
-                    <ModalEditUser 
-                        isOpen={isOpenEditModal} 
+                {isOpenEditModal && (
+                    <ModalEditUser
+                        isOpen={isOpenEditModal}
                         toggle={() => this.handleToggle("isOpenEditModal")}
                         user={user}
                         editUser={this.handleEditUser}
@@ -112,7 +116,7 @@ class UserManage extends Component {
                 )}
                 <div className="title text-center"> Manage users with Augustus Flynn</div>
                 <div className="mx-1">
-                    <button 
+                    <button
                         className="btn btn-primary px-3"
                         onClick={() => this.handleToggle("isOpenUserModal")}
                     >
@@ -121,41 +125,41 @@ class UserManage extends Component {
                     </button>
                 </div>
                 <div className="users-table mt-3">
-                        <table id="customers">
+                    <table id="customers">
                         <tbody>
-                        <tr>
-                            <th>Email</th>
-                            <th>First name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
-                            <th>Action</th>
-                        </tr>
-                        {arrUser && arrUser.map((item, i) => (
-                            <tr key={i}>
-                                <td>{item.email}</td>
-                                <td>{item.firstName}</td>
-                                <td>{item.lastName}</td>
-                                <td>{item.address}</td>
-                                <td>
-                                    <button 
-                                        className="btn-edit" 
-                                        onClick={() => {
-                                            this.handleToggle("isOpenEditModal")
-                                            this.doEditUser(item)
-                                        }}
-                                    >
-                                        <i className="fas fa-pencil-alt "></i>
-                                    </button>
-                                    <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
-                                        <i className="fas fa-trash"></i>
-                                    </button>
-                                </td>
+                            <tr>
+                                <th>Email</th>
+                                <th>First name</th>
+                                <th>Last Name</th>
+                                <th>Address</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
+                            {arrUser && arrUser.map((item, i) => (
+                                <tr key={i}>
+                                    <td>{item.email}</td>
+                                    <td>{item.firstName}</td>
+                                    <td>{item.lastName}</td>
+                                    <td>{item.address}</td>
+                                    <td>
+                                        <button
+                                            className="btn-edit"
+                                            onClick={() => {
+                                                this.handleToggle("isOpenEditModal")
+                                                this.doEditUser(item)
+                                            }}
+                                        >
+                                            <i className="fas fa-pencil-alt "></i>
+                                        </button>
+                                        <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
+                                            <i className="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
-                        </table>
+                    </table>
                 </div>
-                    
+
             </div>
         );
     }
@@ -164,6 +168,8 @@ class UserManage extends Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.user.userInfo,
+        doctorMenuPath: state.app.doctorMenuPath
     };
 };
 
@@ -172,4 +178,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserManage));

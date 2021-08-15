@@ -35,18 +35,12 @@
 
                 &.section-specialty {}
 
-                &.section-medical-facility {
-                    background-image: url('../../assets/medical-facility/093035-benh-vien-thu-cuc-1.jpg');
-                }
+                &.section-medical-facility {}
 
                 &.section-outstanding-doctor {
                     width        : 120px !important;
                     height       : 120px !important;
                     border-radius: 50%;
-                }
-
-                &.section-handbook {
-                    background-image: url("https://via.placeholder.com/150");
                 }
             }
         }

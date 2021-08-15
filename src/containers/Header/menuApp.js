@@ -31,14 +31,6 @@ export const adminMenu = [
                 name: 'menu.admin.manage-specialty', link: '/system/manage-specialty',
             }
         ]
-    },
-    { //Quản lí cẩm nang
-        name: 'menu.admin.handbook',
-        menus: [
-            {
-                name: 'menu.admin.manage-handbook', link: '/system/manage-handbook',
-            }
-        ]
     }
 ];
 
@@ -48,6 +40,9 @@ export const doctorMenu = [
         menus: [
             { //Quản lí lịch khám bệnh
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            },
+            { //Quản lí bệnh nhân
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient',
             }
         ]
     }

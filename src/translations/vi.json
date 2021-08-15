@@ -9,7 +9,10 @@
         "fee": "Gói khám",
         "check-health": "Khám sức khỏe tổng quát",
         "support": "Hỗ trợ",
-        "welcome": "Xin chào, "
+        "welcome": "Xin chào, ",
+        "total-infections": "Tổng ca nhiễm",
+        "recovered": "Số ca khỏi",
+        "deaths": "Số ca tử vong"
     },
     "banner": {
         "title1": "DAILY CARE",
@@ -23,8 +26,7 @@
         "specialized-examination": "Chuyên khoa phổ biến",
         "outstanding-medical-facility": "Cơ sở y tế nổi bật",
         "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
-        "handbook": "Cẩm nang",
-        "media": "Truyền thông nói về ",
+        "covid": "Thông tin COVID-19",
         "watch-more": "Xem thêm"
     },
     "menu": {
@@ -42,7 +44,8 @@
             "manage-handbook": "Quản lý cẩm nang"
         },
         "doctor": {
-            "manage-schedule": "Quản lý lịch khám bệnh"
+            "manage-schedule": "Quản lý lịch khám bệnh",
+            "manage-patient": "Quản lý lịch bênh nhân"
         }
     },
     "manage-user": {
@@ -76,6 +79,7 @@
         "clinic-address": "Địa chỉ phòng khám",
         "note": "Ghi chú",
         "select-specialty": "Chọn chuyên khoa",
+        "select-country": "Chọn quốc gia",
         "select-clinic": "Chọn phòng khám",
         "none": "Xin lỗi! Tỉnh thành này hiện không có bác sĩ nào."
     },
@@ -116,7 +120,12 @@
         "regard": "Chúc quý khách một ngày vui vẻ."
     },
     "manage-specialty": {
-        "specialty-img": "Ảnh chuyên khoa",
-        "save": "Lưu chuyên khoa"
+        "specialty-img": "Ảnh",
+        "save": "Lưu thông tin ",
+        "address": "Địa chỉ"
+    },
+    "manage-patient": {
+        "manage": "Quản lý bênh nhân khám bệnh",
+        "select-date": "Chọn ngày"
     }
 }

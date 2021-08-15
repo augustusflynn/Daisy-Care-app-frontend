@@ -89,3 +89,19 @@ export const getAllSpecialties = () => {
 export const getDetailSpecialtyById = (data) => {
     return axios.get(`/api/get-detail-specialty-by-id/?id=${data.id}&location=${data.location}`)
 }
+
+export const createNewClinic = (data) => {
+    return axios.post(`/api/create-a-new-clinic`, data)
+}
+
+export const getTopClinics = (limit) => {
+    return axios.get(`/api/get-top-clinics-home?limit=${limit}`)
+}
+
+export const getAllClinics = () => {
+    return axios.get("/api/get-all-clinics")
+}
+
+export const getDetailClinicById = (id) => {
+    return axios.get(`/api/get-detail-clinic-by-id/?id=${id}`)
+}

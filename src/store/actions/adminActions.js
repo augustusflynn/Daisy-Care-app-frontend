@@ -8,7 +8,8 @@ import {
     getTopDoctorHomeService,
     getAllDoctors,
     saveDoctorInfoService,
-    getAllSpecialties
+    getAllSpecialties,
+    getAllClinics
 } from '../../services/userService'
 import { toast } from 'react-toastify'
 
@@ -311,18 +312,20 @@ export const getDoctorRequiredInfo = () => {
             let resPayment = await getAllCodeService('PAYMENT')
             let resProvince = await getAllCodeService('PROVINCE')
             let resSpecialty = await getAllSpecialties()
-
+            let resClinic = await getAllClinics()
             if (
                 resPrice && resPrice.errCode === 0 &&
                 resPayment && resPayment.errCode === 0 &&
                 resProvince && resProvince.errCode === 0 &&
-                resSpecialty && resSpecialty.errCode === 0
+                resSpecialty && resSpecialty.errCode === 0 &&
+                resClinic && resClinic.errCode === 0
             ) {
                 let data = {
                     resPrice: resPrice.data,
                     resProvince: resProvince.data,
                     resPayment: resPayment.data,
-                    resSpecialty: resSpecialty.data
+                    resSpecialty: resSpecialty.data,
+                    resClinic: resClinic.data
                 }
                 dispatch({
                     type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS,
@@ -338,6 +341,31 @@ export const getDoctorRequiredInfo = () => {
                 type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAIL
             })
             console.log("Fetch required doctor info failed", e)
+        }
+    }
+}
+
+export const fetchAllSpecialty = () => {
+    return async (dispatch) => {
+        try {
+            let res = await getAllSpecialties()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_SPECIALTY_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                toast.error("Fetch data failed :( !")
+                dispatch({
+                    type: actionTypes.FETCH_ALL_SPECIALTY_FAIL
+                })
+            }
+        } catch (e) {
+            console.log("Fetch data failed", e)
+            toast.error("Fetch data failed :( !")
+            dispatch({
+                type: actionTypes.FETCH_ALL_SPECIALTY_FAIL
+            })
         }
     }
 }

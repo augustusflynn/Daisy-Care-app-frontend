@@ -8,8 +8,10 @@ const initialState = {
     users: [],
     topDoctors: [],
     allDoctors: [],
+    allSpecialty: [],
     allScheduleTime: [],
-    requiredDoctorInfo: []
+    requiredDoctorInfo: [],
+    allProvince: []
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -66,6 +68,13 @@ const adminReducer = (state = initialState, action) => {
                 isLoading: false,
                 requiredDoctorInfo: action.data
             }
+        case actionTypes.FETCH_ALL_SPECIALTY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                allSpecialty: action.data
+            }
+        case actionTypes.FETCH_ALL_SPECIALTY_FAIL:
         case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAIL:
         case actionTypes.FETCH_ALLCODE_SCHEDULE_FAIL:
         case actionTypes.FETCH_ALL_DOCTOR_FAIL:

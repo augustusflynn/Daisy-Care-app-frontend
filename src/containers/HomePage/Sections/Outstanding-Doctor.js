@@ -23,12 +23,28 @@ class OutStandingDoctor extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.loadTopDoctor(8)
+    async componentDidMount() {
+        await this.props.loadTopDoctor(8)
     }
 
     handleViewDetailDoctor = (item) => {
         this.props.history.push(`/detail-doctor/${item.id}`)
+    }
+
+    getNameSpecialty = (specialtyId) => {
+        const { allSpecialty, language } = this.props
+        let name = ''
+        if (!allSpecialty || !allSpecialty.length > 0)
+            return name
+
+        for (let i = 0; i < allSpecialty.length; i++) {
+            if (specialtyId === allSpecialty[i].id) {
+                name = language === LANGUAGES.VI ? allSpecialty[i].nameVi : allSpecialty[i].nameEn
+                break;
+            }
+        }
+
+        return name
     }
 
     render() {
@@ -67,7 +83,7 @@ class OutStandingDoctor extends Component {
                                             </div>
                                             <div className="position text-center text-hover">
                                                 <div>{language === LANGUAGES.EN ? nameEn : nameVi}</div>
-                                                <div>Cơ xương khớp</div>
+                                                <div>{item.Doctor_Info && item.Doctor_Info.specialtyId ? this.getNameSpecialty(item.Doctor_Info.specialtyId) : ""}</div>
                                             </div>
                                         </div>
                                     </div>)
@@ -86,7 +102,8 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
-        topDoctors: state.admin.topDoctors
+        topDoctors: state.admin.topDoctors,
+        allSpecialty: state.admin.allSpecialty
     };
 };
 

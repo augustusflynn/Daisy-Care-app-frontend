@@ -122,8 +122,6 @@ class DetailSpecialty extends Component {
                 <HomeHeader />
                 <div style={{ paddingTop: "50px" }} />
                 <div className="detail-specialty-body">
-
-
                     <div className="detail-specialty-description">
                         {
                             dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
