@@ -6,8 +6,8 @@
         "select-room": "Choose hospital clinic",
         "doctor": "Doctor",
         "select-doctor": "Choose a good doctor",
-        "fee": "Checkup package",
-        "check-health": "General health check",
+        "fee": "Doctor's page",
+        "check-health": "Doctor's private page",
         "support": "Support",
         "welcome": "Welcome,",
         "total-infections": "Total infections",
@@ -27,7 +27,8 @@
         "outstanding-medical-facility": "Outstanding medical facility",
         "outstanding-doctors": "Outstanding doctors",
         "covid": "Section COVID-19",
-        "watch-more": "Find more"
+        "watch-more": "Find more",
+        "prevention": "Prevent the COVID-19"
     },
     "menu": {
         "admin": {
@@ -116,7 +117,7 @@
         "wrong": "It may be schedule doesn't exist or error from the server.",
         "hotline": "If you have any questions, please call hotline: 0913115560",
         "email": "Or you can send email: huytung139@gmail.com",
-        "thanks": "Thanks for choosing Daily Care!",
+        "thanks": "Thanks for choosing Daisy Care!",
         "regard": "Have a good day."
     },
     "manage-specialty": {
@@ -126,6 +127,13 @@
     },
     "manage-patient": {
         "manage": "Manage patients",
-        "select-date": "Select a date"
+        "select-date": "Select a date",
+        "fullname": "Full name",
+        "gender": "Gender",
+        "date": "Birthday",
+        "actions": "Actions",
+        "time": "Time",
+        "confirm": "Confirm",
+        "bill": "Send the bill"
     }
 }

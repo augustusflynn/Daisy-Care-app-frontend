@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux';
-import { getTopSpecialties } from '../../../services/userService'
 import Slider from "react-slick";
 import { LANGUAGES } from '../../../utils/constant'
 import { withRouter } from 'react-router'

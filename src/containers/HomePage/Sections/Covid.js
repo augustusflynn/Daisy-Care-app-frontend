@@ -81,7 +81,7 @@ class CovidSection extends Component {
     }
 
     render() {
-        const { selectedCountry, listCountries, infoCOVID, language } = this.state
+        const { selectedCountry, listCountries, infoCOVID } = this.state
 
         return (
             <div className="covid-section-container">

@@ -72,9 +72,9 @@ class BookingModal extends Component {
                 let obj = {}
                 obj.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn
                 obj.value = item.keyMap
-
-
                 result.push(obj)
+
+                return item
             })
         }
 
@@ -128,6 +128,7 @@ class BookingModal extends Component {
         let formattedDate = new Date(birthday).getTime()
         let timeString = this.buildTimeBooking(dataSchedule)
         let doctorName = this.buildDoctorName(dataSchedule)
+
         let res = await postBookingAppointment({
             firstName: firstName,
             lastName: lastName,
@@ -135,7 +136,8 @@ class BookingModal extends Component {
             email: email,
             address: address,
             reason: reason,
-            date: formattedDate,
+            date: dataSchedule.date,
+            birthday: formattedDate,
             doctorId: this.props.doctorId,
             gender: selectedGender.value,
             timeType: timeType,

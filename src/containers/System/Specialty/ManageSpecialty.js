@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { LANGUAGES } from '../../../utils/constant';
 import './ManageSpecialty.scss'
 import { FormattedMessage } from 'react-intl'
 //import markdonw

@@ -8,6 +8,7 @@ import * as actions from '../../../store/actions'
 import DatePicker from '../../../components/Input/DatePicker'
 import { toast } from 'react-toastify'
 import { saveBulkSchedule } from '../../../services/userService'
+import { withRouter } from 'react-router';
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -22,8 +23,13 @@ class ManageSchedule extends Component {
     }
 
     async componentDidMount() {
-        await this.props.fetchALLDoctor()
-        await this.props.fetchAllcodeSchedule()
+        const { patientMenuPath, user } = this.props
+        if (user && user.roleId === "R3")
+            this.props.history.replace(patientMenuPath)
+        else {
+            await this.props.fetchALLDoctor()
+            await this.props.fetchAllcodeSchedule()
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -218,7 +224,9 @@ const mapStateToProps = state => {
         isLoggedIn: state.user.isLoggedIn,
         allDoctors: state.admin.allDoctors,
         language: state.app.language,
-        allScheduleTime: state.admin.allScheduleTime
+        allScheduleTime: state.admin.allScheduleTime,
+        patientMenuPath: state.app.patientMenuPath,
+        user: state.user.userInfo
     };
 };
 
@@ -229,4 +237,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSchedule);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManageSchedule));

@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl'
 import moment from 'moment'
 import localization from 'moment/locale/vi'
 import { getScheduleDoctorByDate } from '../../../../services/userService'
-// import { toast } from 'react-toastify';
 import BookingModal from './Modal/BookingModal';
 
 class DoctorSchedule extends Component {

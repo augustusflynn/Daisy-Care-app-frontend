@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { LANGUAGES } from '../../../utils/constant';
 import './VerifyingEmail.scss'
 import { FormattedMessage } from 'react-intl'
 import { postVerifyBooking } from '../../../services/userService'

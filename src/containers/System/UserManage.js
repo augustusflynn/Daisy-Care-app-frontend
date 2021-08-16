@@ -21,12 +21,12 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
-        const { user, doctorMenuPath } = this.props
+        const { user, doctorMenuPath, patientMenuPath } = this.props
         if (user && user.roleId === "R2")
             this.props.history.replace(doctorMenuPath)
-        // } else {
-        await this.getAllUserFromReact()
-        // }
+        else if (user && user.roleId === "R3")
+            this.props.history.replace(patientMenuPath)
+        else await this.getAllUserFromReact()
     }
 
     getAllUserFromReact = async () => {
@@ -169,7 +169,8 @@ class UserManage extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user.userInfo,
-        doctorMenuPath: state.app.doctorMenuPath
+        doctorMenuPath: state.app.doctorMenuPath,
+        patientMenuPath: state.app.patientMenuPath
     };
 };
 

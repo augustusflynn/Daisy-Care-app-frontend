@@ -105,3 +105,11 @@ export const getAllClinics = () => {
 export const getDetailClinicById = (id) => {
     return axios.get(`/api/get-detail-clinic-by-id/?id=${id}`)
 }
+
+export const getAllPatient = (id, date) => {
+    return axios.get(`/api/get-list-patient-by-doctor/?id=${id}&date=${date}`)
+}
+
+export const sendEmailRemedyService = (data) => {
+    return axios.post(`/api/send-remedy`, data)
+}

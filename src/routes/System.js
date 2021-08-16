@@ -9,8 +9,21 @@ import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
 import ManageClinic from '../containers/System/Clinic/ManageClinic';
 
 class System extends Component {
+    getRedirectLink = () => {
+        const { userInfo, systemMenuPath, doctorMenuPath, patientMenuPath } = this.props
+        if (userInfo) {
+            switch (userInfo.roleId) {
+                case "R1":
+                    return systemMenuPath
+                case "R2":
+                    return doctorMenuPath
+                default:
+                    return patientMenuPath
+            }
+        }
+    }
     render() {
-        const { systemMenuPath, isLoggedIn, userInfo, doctorMenuPath } = this.props;
+        const { isLoggedIn } = this.props;
         return (
             <React.Fragment>
                 {isLoggedIn && <Header />}
@@ -24,7 +37,7 @@ class System extends Component {
                             <Route path="/system/manage-clinic" component={ManageClinic} />
 
                             <Route component={() => {
-                                return (<Redirect to={userInfo && userInfo.roleId === "R1" ? systemMenuPath : doctorMenuPath} />)
+                                return (<Redirect to={this.getRedirectLink()} />)
                             }} />
                         </Switch>
                     </div>
@@ -38,6 +51,7 @@ const mapStateToProps = state => {
     return {
         systemMenuPath: state.app.systemMenuPath,
         doctorMenuPath: state.app.doctorMenuPath,
+        patientMenuPath: state.app.patientMenuPath,
         isLoggedIn: state.user.isLoggedIn,
         userInfo: state.user.userInfo
     };

@@ -6,8 +6,8 @@
         "select-room": "Phòng khám",
         "doctor": "Bác sĩ",
         "select-doctor": "Chọn bác sĩ giỏi",
-        "fee": "Gói khám",
-        "check-health": "Khám sức khỏe tổng quát",
+        "fee": "Hệ thống bác sĩ",
+        "check-health": "Trang này dành riêng cho bác sĩ",
         "support": "Hỗ trợ",
         "welcome": "Xin chào, ",
         "total-infections": "Tổng ca nhiễm",
@@ -27,7 +27,8 @@
         "outstanding-medical-facility": "Cơ sở y tế nổi bật",
         "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
         "covid": "Thông tin COVID-19",
-        "watch-more": "Xem thêm"
+        "watch-more": "Xem thêm",
+        "prevention": "Phòng chống COVID-19"
     },
     "menu": {
         "admin": {
@@ -116,7 +117,7 @@
         "wrong": "Có vẻ như là lịch hẹn không tồn tại hoặc hệ thống đã gặp trục trặc.",
         "hotline": "Nếu quý khách cần hỗ trợ vui lòng liên hệ hotline: 0913115560",
         "email": "Hoặc gửi thư điện tử qua: huytung139@gmail.com",
-        "thanks": "Cảm ơn đã lựa chọn Daily Care!",
+        "thanks": "Cảm ơn đã lựa chọn Daisy Care!",
         "regard": "Chúc quý khách một ngày vui vẻ."
     },
     "manage-specialty": {
@@ -126,6 +127,13 @@
     },
     "manage-patient": {
         "manage": "Quản lý bênh nhân khám bệnh",
-        "select-date": "Chọn ngày"
+        "select-date": "Chọn ngày",
+        "fullname": "Họ và tên",
+        "gender": "Giới tính",
+        "date": "Ngày sinh",
+        "actions": "Hành động",
+        "time": "Thời gian",
+        "confirm": "Xác nhận",
+        "bill": "Gửi hóa đơn"
     }
 }

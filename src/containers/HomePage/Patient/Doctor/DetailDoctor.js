@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import HomeHeader from '../../HomeHeader';
 import "./DetailDoctor.scss"
-import { getDetailInfoDoctor, getAllCodeService } from '../../../../services/userService'
+import { getDetailInfoDoctor } from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils/constant';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfo from './DoctorExtraInfo';
-import _ from 'lodash'
 
 class DetailDoctor extends Component {
     constructor(props) {
