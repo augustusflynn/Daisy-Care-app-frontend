@@ -6,6 +6,8 @@ import { getDetailInfoDoctor } from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils/constant';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfo from './DoctorExtraInfo';
+import LikeButton from '../Social/LikeButton';
+import Comment from '../Social/Comment';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -55,6 +57,10 @@ class DetailDoctor extends Component {
             nameEn = `${detailDoctor.positionData.valueEn === "None" ? "" : detailDoctor.positionData.valueEn} ${detailDoctor.firstName} ${detailDoctor.lastName}`
         }
 
+        let currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
+            "https://augustus-flynn-chatbot.herokuapp.com/" :
+            window.location.href
+
         return (
 
             <>
@@ -80,6 +86,9 @@ class DetailDoctor extends Component {
                                         {detailDoctor.Markdown.description}
                                     </span>
                                 }
+                                <LikeButton
+                                    dataHref={currentURL}
+                                />
                             </div>
 
                         </div>
@@ -113,7 +122,10 @@ class DetailDoctor extends Component {
                     </div>
 
                     <div className="comment-doctor">
-
+                        <Comment
+                            dataHref={currentURL}
+                            width="100%"
+                        />
                     </div>
                 </div>
             </>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { LANGUAGES } from '../../../../utils/constant';
 
-class LikeButton extends Component {
+class Comment extends Component {
     constructor(props) {
         super(props)
 
@@ -49,18 +49,16 @@ class LikeButton extends Component {
 
 
     render() {
-        const { dataHref } = this.props
+        const { dataHref, numberCmt, width } = this.props
         return (
             <>
                 <div
-                    className="fb-like"
+                    className="fb-comments"
                     data-href={dataHref}
-                    data-width=""
-                    data-layout="standard"
-                    data-action="like"
-                    data-size="small"
-                    data-share="true"
-                ></div>
+                    data-width={width ? width : ''}
+                    data-numposts={numberCmt ? numberCmt : "5"}
+                >
+                </div>
             </>
         );
     }
@@ -78,4 +76,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LikeButton);
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);
