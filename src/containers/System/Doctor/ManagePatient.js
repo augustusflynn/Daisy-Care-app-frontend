@@ -27,7 +27,7 @@ class ManagePatient extends Component {
         await this.getDataPatient()
     }
 
-    getDataPatient = async (id, date) => {
+    getDataPatient = async () => {
         const { user } = this.props
         const { currentDate, isLoading } = this.state
         const formattedDate = new Date(currentDate).getTime()
@@ -161,7 +161,7 @@ class ManagePatient extends Component {
                                                     <td>{item.patientData.address}</td>
                                                     <td>{this.getValueByLanguage(item.timeData, "VALUE")}</td>
                                                     <td>{this.getValueByLanguage(item.patientData.genderData, "VALUE")}</td>
-                                                    <td>day la ngay sinh</td>
+                                                    <td>{item.patientData.birthday}</td>
                                                     <td>{item.reason}</td>
                                                     <td>
                                                         <button

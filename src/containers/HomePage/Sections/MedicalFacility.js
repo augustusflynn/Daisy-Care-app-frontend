@@ -28,6 +28,10 @@ class MeicalFacility extends Component {
         this.props.history.push(`/detail-clinic/${item.id}`)
     }
 
+    handleViewAllSpecialty = () => {
+        this.props.history.push(`/all-clinic`)
+    }
+
     render() {
         const { dataClinics } = this.state
         const { language, settings } = this.props
@@ -36,7 +40,10 @@ class MeicalFacility extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <span className="title-sec"><FormattedMessage id="banner.outstanding-medical-facility" /></span>
-                        <button className="btn-sec"><FormattedMessage id="banner.watch-more" /></button>
+                        <button
+                            className="btn-sec"
+                            onClick={this.handleViewAllSpecialty}
+                        ><FormattedMessage id="banner.watch-more" /></button>
                     </div>
                     <div className="section-body">
                         <Slider {...settings}>

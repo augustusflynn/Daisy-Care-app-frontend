@@ -47,6 +47,10 @@ class OutStandingDoctor extends Component {
         return name
     }
 
+    handleViewAllDoctor = () => {
+        this.props.history.push(`/all-doctor`)
+    }
+
     render() {
         const { arrDoctos } = this.state
         const { language } = this.props
@@ -55,7 +59,10 @@ class OutStandingDoctor extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <span className="title-sec" ><FormattedMessage id="banner.outstanding-doctors" /></span>
-                        <button className="btn-sec">{language === LANGUAGES.VI ? "TÌM KIẾM" : "FIND A DOCTOR"}</button>
+                        <button
+                            className="btn-sec"
+                            onClick={this.handleViewAllDoctor}
+                        >{language === LANGUAGES.VI ? "TÌM KIẾM" : "FIND A DOCTOR"}</button>
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>

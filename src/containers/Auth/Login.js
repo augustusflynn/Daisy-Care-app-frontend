@@ -4,24 +4,48 @@ import { push } from "connected-react-router";
 import * as actions from '../../store/actions';
 import './Login.scss';
 import { handleLogin } from '../../services/userService';
+import { withRouter } from 'react-router'
+
 
 class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: "",
+            email: "",
             password: "",
             isShowPassword: false,
             err: ''
         };
     }
 
+    validateInput = () => {
+        if (this.state.email === "")
+            return {
+                errCode: 1,
+                errMessage: "Mising required email parameter!"
+            }
+        if (this.state.password === "")
+            return {
+                errCode: 1,
+                errMessage: "Mising required password parameter!"
+            }
+        return {
+            errCode: 0
+        }
+    }
+
+
     submit = async () => {
-        const { username, password } = this.state
+        const { email, password } = this.state
         this.setState({ err: "" })
+        let validate = this.validateInput()
+        if (validate.errCode !== 0) {
+            this.setState({ err: validate.errMessage })
+            return
+        }
         try {
-            let data = await handleLogin(username, password)
+            let data = await handleLogin(email, password)
             if (data && data.errCode !== 0) {
                 this.setState({ err: data.message })
             }
@@ -29,10 +53,8 @@ class Login extends Component {
                 this.props.userLoginSuccess(data.user);
             }
         } catch (err) {
-            if (err.response) {
-                if (err.response.data) {
-                    this.setState({ err: err.response.data.message })
-                }
+            if (err.response && err.response.data) {
+                this.setState({ err: err.response.data.message })
             }
         }
     }
@@ -48,35 +70,54 @@ class Login extends Component {
             this.submit()
     }
 
+    handleChangeText = (e) => {
+        const { name, value } = e.target
+        let cpState = this.state
+        cpState[name] = value
+        this.setState(cpState)
+    }
+
+    naviagteRegister = () => {
+        this.props.history.push('/register')
+    }
+
     render() {
-        const { username, password, isShowPassword, err } = this.state
+        const { email, password, isShowPassword, err } = this.state
 
         return (
             <div className="login-bg">
-
                 <div id="loginform">
-
-                    <h2 id="headerTitle">Login</h2>
-                    <div>
-                        <div className="rowWapper">
-                            <label>Username</label>
+                    <div id="form_login">
+                        <h2 id="headerTitle">
+                            Login
+                        </h2>
+                        <div className="form-group rowWapper">
+                            <label>
+                                Email
+                            </label>
                             <input
-                                value={username}
-                                onChange={(text) => this.setState({ username: text.target.value })}
-                                placeholder="username"
+                                placeholder="email"
+                                id="username"
+                                name="email"
                                 type="text"
+                                className="form-control"
+                                value={email}
+                                onChange={this.handleChangeText}
                             />
                         </div>
 
-                        <div className="rowWapper">
-                            <label>Password</label>
-                            <div className="passwordWrapper">
+                        <div id="phone-input-container" className="form-group rowWapper">
+                            <label>
+                                Password
+                            </label>
+                            <div className="passwordWapper">
                                 <input
-                                    value={password}
-                                    onChange={(text) => this.setState({ password: text.target.value })}
                                     placeholder="password"
+                                    name="password"
                                     type={isShowPassword ? "text" : "password"}
-                                    onKeyDown={this.onKeyPress}
+                                    className="form-control"
+                                    value={password}
+                                    onChange={this.handleChangeText}
                                 />
                                 <span
                                     onClick={this.handleShowPassword}
@@ -86,12 +127,24 @@ class Login extends Component {
                             </div>
                         </div>
 
-                        {err ? <p className="error">{err}</p> : <p style={{ color: "#fff" }}>NULL</p>}
-                        <div id="button" className="rowWapper">
+                        {err && (
+                            <div className='error'>
+                                <span className='login-error-message'>{err}</span>
+                            </div>
+                        )}
+                        <div style={{ height: '30px' }} />
+                        <div className="btn btn-login">
                             <button
                                 onClick={this.submit}
-                                className="btnAAA"
+                                className="btn"
                             >Sign in</button>
+
+                        </div>
+                        <div className="btn btn-register">
+                            <button
+                                onClick={this.naviagteRegister}
+                                className="btn"
+                            >Sign up</button>
 
                         </div>
                     </div>
@@ -117,4 +170,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

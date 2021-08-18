@@ -32,6 +32,10 @@ class Specialty extends Component {
         this.props.history.push(`/detail-specialty/${item.id}`)
     }
 
+    handleViewAllSpecialty = () => {
+        this.props.history.push(`/all-specialty`)
+    }
+
     render() {
         const { dataSpecialty } = this.state
         const { language } = this.props
@@ -41,7 +45,10 @@ class Specialty extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <span className="title-sec" ><FormattedMessage id="banner.specialized-examination" /> </span>
-                        <button className="btn-sec"><FormattedMessage id="banner.watch-more" /></button>
+                        <button
+                            className="btn-sec"
+                            onClick={this.handleViewAllSpecialty}
+                        ><FormattedMessage id="banner.watch-more" /></button>
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>

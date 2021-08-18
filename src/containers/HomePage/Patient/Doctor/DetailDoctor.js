@@ -86,6 +86,7 @@ class DetailDoctor extends Component {
                                         {detailDoctor.Markdown.description}
                                     </span>
                                 }
+                                <br />
                                 <LikeButton
                                     dataHref={currentURL}
                                 />

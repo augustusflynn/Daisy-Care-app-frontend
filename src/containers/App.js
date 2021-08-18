@@ -23,6 +23,7 @@ import DetailCOVID from './HomePage/Patient/COVID/DetailCOVID';
 import AllDoctor from './HomePage/Patient/Doctor/AllDoctor';
 import AllClinic from './HomePage/Patient/Clinic/AllClinic'
 import AllSpecialty from './HomePage/Patient/Specialty/AllSpecialty'
+import Register from './Auth/Register';
 
 class App extends Component {
 
@@ -54,6 +55,7 @@ class App extends Component {
                                 <Switch>
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                    <Route path={path.REGISTER} component={userIsNotAuthenticated(Register)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />

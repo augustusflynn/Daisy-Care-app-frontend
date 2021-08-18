@@ -37,7 +37,7 @@ class AllSpecialty extends Component {
         return (
             <>
                 <HomeHeader />
-                <div style={{ marginTop: "60px" }} />
+                <div style={{ marginTop: "100px" }} />
                 <div className="all-specialty-container">
                     {
                         allSpecialty && allSpecialty.map((item, index) => {
@@ -52,9 +52,11 @@ class AllSpecialty extends Component {
                                         className="a-s-image"
                                         style={{ backgroundImage: `url(${item.image})` }}
                                     />
-                                    <span className="a-s-title">
-                                        {name}
-                                    </span>
+                                    <div className="content-right">
+                                        <span className="a-s-title">
+                                            {name}
+                                        </span>
+                                    </div>
                                 </div>
                             )
                         })

@@ -17,9 +17,6 @@ export const createUserService = (data) => {
 
 export const deleteUser = (userId) => {
     return axios.delete('/api/delete-user', {
-        // headers: {
-        //     Authorization: au
-        // },
         data: {
             id: userId
         }
