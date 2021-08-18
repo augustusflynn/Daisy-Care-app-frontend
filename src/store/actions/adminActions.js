@@ -9,7 +9,8 @@ import {
     getAllDoctors,
     saveDoctorInfoService,
     getAllSpecialties,
-    getAllClinics
+    getAllClinics,
+    getAllDoctorDetail
 } from '../../services/userService'
 import { toast } from 'react-toastify'
 
@@ -365,6 +366,56 @@ export const fetchAllSpecialty = () => {
             toast.error("Fetch data failed :( !")
             dispatch({
                 type: actionTypes.FETCH_ALL_SPECIALTY_FAIL
+            })
+        }
+    }
+}
+
+export const fetchAllClinic = () => {
+    return async (dispatch) => {
+        try {
+            let res = await getAllClinics()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CLINIC_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                toast.error("Fetch data clinic failed :( !")
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CLINIC_FAIL
+                })
+            }
+        } catch (e) {
+            console.log("Fetch data clinic failed", e)
+            toast.error("Fetch data clinic failed :( !")
+            dispatch({
+                type: actionTypes.FETCH_ALL_CLINIC_FAIL
+            })
+        }
+    }
+}
+
+export const fetchAllDetailDoctor = () => {
+    return async (dispatch) => {
+        try {
+            let res = await getAllDoctorDetail()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DETAIL_DOCTOR_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                toast.error("Fetch data failed :( !")
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DETAIL_DOCTOR_FAIL
+                })
+            }
+        } catch (e) {
+            console.log("Fetch detail data failed", e)
+            toast.error("Fetch detail data failed :( !")
+            dispatch({
+                type: actionTypes.FETCH_ALL_DETAIL_DOCTOR_FAIL
             })
         }
     }

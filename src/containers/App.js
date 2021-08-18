@@ -20,6 +20,9 @@ import VerifyingEmail from './HomePage/Patient/VerifyingEmail';
 import DetailSpecialty from './HomePage/Patient/Specialty/DetailSpecialty';
 import DetailClinic from './HomePage/Patient/Clinic/DetailClinic';
 import DetailCOVID from './HomePage/Patient/COVID/DetailCOVID';
+import AllDoctor from './HomePage/Patient/Doctor/AllDoctor';
+import AllClinic from './HomePage/Patient/Clinic/AllClinic'
+import AllSpecialty from './HomePage/Patient/Specialty/AllSpecialty'
 
 class App extends Component {
 
@@ -55,8 +58,11 @@ class App extends Component {
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.ALL_DOCTOR} component={AllDoctor} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
+                                    <Route path={path.ALL_SPECIALTY} component={AllSpecialty} />
                                     <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                                    <Route path={path.ALL_CLINIC} component={AllClinic} />
                                     <Route path={path.DETAIL_COVID} component={DetailCOVID} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyingEmail} />
                                 </Switch>

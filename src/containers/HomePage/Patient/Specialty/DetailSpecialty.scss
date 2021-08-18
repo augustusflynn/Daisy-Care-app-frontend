@@ -2,26 +2,35 @@
     background-color: #e9e9e9;
 
     .detail-specialty-body {
-        margin: 0 100px;
     }
 
     .detail-specialty-description {
-        padding         : 10px;
-        z-index         : 1;
-        margin-bottom   : 50px;
-        background-color: #fff;
+        background: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 0 !important;
 
-        div {
-            overflow: hidden;
+        .front-content {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9));
+            width: 100%;
+            height: 100%;
+
+            div {
+                overflow: hidden;
+                padding: 10px;
+            }
+
+            button {
+                border          : none;
+                outline         : none;
+                font-weight     : 500;
+                color           : #23887c;
+                background-color: transparent;
+            }
         }
 
-        button {
-            border          : none;
-            outline         : none;
-            font-weight     : 500;
-            color           : #23887c;
-            background-color: transparent;
-        }
+        
     }
 
     .select-ds {
@@ -38,7 +47,7 @@
     .each-doctor {
         display         : flex;
         width           : 100%;
-        height          : 450px;
+        height          : 555px;
         margin          : 15px 0;
         padding         : 10px;
         background-color: #fff;

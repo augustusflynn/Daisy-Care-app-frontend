@@ -60,14 +60,18 @@
                 cursor       : pointer;
                 display      : flex;
                 align-items  : center;
-                padding-right: 50px;
+                padding-right: 30px;
 
-                i {
-                    font-size   : 15px;
-                    margin-right: 5px;
-                    color       : #23887c;
+                .action-button {
+                    padding-left: 20px;
+
+                    &:hover {
+                        color: #23887c;
+                    }
                 }
             }
+
+
 
             .language-vi {
                 cursor : pointer;

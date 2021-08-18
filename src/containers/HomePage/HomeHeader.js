@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import logo from "../../assets/images/logo.png"
 import { LANGUAGES } from '../../utils/constant'
-import { changeLanguageApp } from '../../store/actions'
+import * as actions from '../../store/actions'
+import { toast } from 'react-toastify'
 
 class HomeHeader extends Component {
 
@@ -18,12 +19,34 @@ class HomeHeader extends Component {
             this.props.history.push(`/home`)
     }
 
-    handleClickDoctorPage = () => {
-        this.props.history.push(`/login`)
+    handleClickSpecialtyPage = () => {
+        this.props.history.push('/all-specialty')    
+        
+    }
+
+    handleClickClinicPage = () => {
+        this.props.history.push('/all-clinic')    
+    }
+
+    handleClickViewAllDoctor = () => {
+        this.props.history.push('/all-doctor')    
+    }
+
+    handleClickDoctorPage = () => {        
+        const { user, language } = this.props
+        if(user && user.roleId === "R3") {
+            let message = language === LANGUAGES.VI ? "Bạn không có quyền truy cập vào trang này." : "You don't have permission to access this site."
+            toast.error(message)
+        } else 
+            this.props.history.push('/login')
+    }
+
+    nagvigateLogin = () => {
+        this.props.history.push('/login')
     }
 
     render() {
-        const { language, isShowBanner } = this.props
+        const { language, isShowBanner, user } = this.props
         return (
             <React.Fragment>
                 <div className="home-header-container">
@@ -40,17 +63,17 @@ class HomeHeader extends Component {
                         </div>
 
                         <div className="center-content">
-                            <div className="child-content">
+                            <div className="child-content" onClick={this.handleClickSpecialtyPage}>
                                 <div><b><FormattedMessage id="homeheader.specialty" /></b></div>
                                 <div className="subTitle"><FormattedMessage id="homeheader.search-doctor" /></div>
                             </div>
 
-                            <div className="child-content">
+                            <div className="child-content" onClick={this.handleClickClinicPage}>
                                 <div><b><FormattedMessage id="homeheader.health-facility" /></b></div>
                                 <div className="subTitle"><FormattedMessage id="homeheader.select-room" /></div>
                             </div>
 
-                            <div className="child-content">
+                            <div className="child-content" onClick={this.handleClickViewAllDoctor}>
                                 <div><b><FormattedMessage id="homeheader.doctor" /></b></div>
                                 <div className="subTitle"><FormattedMessage id="homeheader.select-doctor" /></div>
                             </div>
@@ -63,10 +86,19 @@ class HomeHeader extends Component {
 
                         <div className="right-content">
                             <div className="support">
-                                <i className="fas fa-question-circle" />
-                                <FormattedMessage id="homeheader.support" />
                                 <div className={language === LANGUAGES.VI ? 'language-vi active' : "language-vi"}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
                                 <div className={language === LANGUAGES.EN ? 'language-en active' : "language-en"}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+                                {
+                                    !user ? (
+                                        <div className="action-button" onClick={this.nagvigateLogin}>
+                                            Đăng nhập
+                                        </div>
+                                    ): (
+                                        <div className="action-button" onClick={this.props.handleLogout}>
+                                            Đăng xuất
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
@@ -149,12 +181,14 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        user: state.user.userInfo
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
+        changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language)),
+        handleLogout: () => dispatch(actions.processLogout())
     };
 };
 

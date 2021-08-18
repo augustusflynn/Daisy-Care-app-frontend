@@ -116,28 +116,42 @@ class DetailSpecialty extends Component {
     }
 
     render() {
-        const { arrDoctorId, dataDetailSpecialty, listProvince, selectedProvince, isShowDetail } = this.state
+        const { 
+            arrDoctorId,
+            dataDetailSpecialty,
+            listProvince,
+            selectedProvince,
+            isShowDetail
+        } = this.state
+
         return (
             <div className="detail-specialty-container">
                 <HomeHeader />
                 <div style={{ paddingTop: "50px" }} />
                 <div className="detail-specialty-body">
-                    <div className="detail-specialty-description">
-                        {
-                            dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: dataDetailSpecialty.descriptionHTML
-                                    }}
-                                    style={{ height: isShowDetail ? "auto" : "200px" }}
-                                />
-                            )
-                        }
-                        <button
-                            onClick={() => this.setState({ isShowDetail: !isShowDetail })}
-                        >
-                            <FormattedMessage id={isShowDetail ? "extra-doctor-info.hide-detail" : "extra-doctor-info.view-detail"} />
-                        </button>
+                    <div 
+                        className="detail-specialty-description"
+                        style={{backgroundImage: `url(${dataDetailSpecialty.image})` }}
+                    >
+                        <div className="front-content">
+                            {
+                                dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: dataDetailSpecialty.descriptionHTML
+                                        }}
+                                        style={{ height: isShowDetail ? "auto" : "200px" }}
+                                    />
+                                )
+                            }
+                            <button
+                                onClick={() => this.setState({ isShowDetail: !isShowDetail })}
+                            >
+                                <FormattedMessage id={isShowDetail ? "extra-doctor-info.hide-detail" : "extra-doctor-info.view-detail"} />
+                            </button>
+                        </div>
+                        
+                        
                     </div>
 
                     <Select

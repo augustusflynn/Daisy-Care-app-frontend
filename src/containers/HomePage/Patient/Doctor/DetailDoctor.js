@@ -48,7 +48,6 @@ class DetailDoctor extends Component {
     render() {
         const { detailDoctor } = this.state
         const { language } = this.props
-
         let nameVi = "", nameEn = ""
 
         if (detailDoctor.positionData) {
@@ -57,6 +56,7 @@ class DetailDoctor extends Component {
         }
 
         return (
+
             <>
                 <HomeHeader isShowBanner={false} />
                 <div className="doctor-detail-container">
