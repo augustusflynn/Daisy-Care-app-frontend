@@ -72,7 +72,7 @@ class OutStandingDoctor extends Component {
                                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`
                                 let imgBase64 = "";
                                 if (item.image) {
-                                    imgBase64 = new Buffer(item.image, 'base64').toString('binary')
+                                    imgBase64 = Buffer.from(item.image, 'base64').toString('binary')
                                 }
 
                                 return (

@@ -96,7 +96,7 @@ class AllDoctor extends Component {
                             let name = language === LANGUAGES.VI ?
                                 `${item.lastName} ${item.firstName}` :
                                 `${item.firstName} ${item.lastName}`
-                            let imgBase64 = new Buffer(item.image, 'base64').toString('binary')
+                            let imgBase64 = Buffer.from(item.image, 'base64').toString('binary')
                             let position = language === LANGUAGES.VI ?
                                 `${item.positionData.valueVi}` :
                                 `${item.positionData.valueEn}`

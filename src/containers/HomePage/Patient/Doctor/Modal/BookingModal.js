@@ -35,7 +35,7 @@ class BookingModal extends Component {
 
     async componentDidMount() {
         await this.props.fetchGender()
-        const { user } = this.props
+        const { user, genders } = this.props
 
         if (user && !_.isEmpty(user)) {
             this.setState({
@@ -44,7 +44,8 @@ class BookingModal extends Component {
                 phoneNumber: user.phoneNumber,
                 email: user.email,
                 address: user.address,
-                birthday: user.birthday
+                birthday: user.birthday,
+                selectedGender: this.buildFirstGenderSelect(genders)
             })
         }
     }
@@ -74,6 +75,7 @@ class BookingModal extends Component {
             if (genders[i].keyMap === this.props.user.gender) {
                 result.value = genders[i].keyMap;
                 result.label = language === LANGUAGES.VI ? genders[i].valueVi : genders[i].valueEn
+                break
             }
         }
 
