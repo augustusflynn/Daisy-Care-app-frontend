@@ -57,7 +57,7 @@ class RemedyModal extends Component {
         this.props.handleSendBill(this.state)
     }
     render() {
-        const { isOpen, toggle } = this.props
+        const { isOpen, toggle, language } = this.props
         const { email } = this.state
 
         return (
@@ -68,7 +68,11 @@ class RemedyModal extends Component {
                 size="md"
                 centered
             >
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}>
+                    {
+                        language === LANGUAGES.VI ? "ĐƠN THUỐC" : "REMEDY"
+                    }
+                </ModalHeader>
                 <ModalBody>
                     <div className="row">
                         <div className="col-6 form-group">
@@ -80,7 +84,9 @@ class RemedyModal extends Component {
 
                         <div className="col-6 form-group">
                             <label>
-                                Chon file hoa don
+                                {
+                                    language === LANGUAGES.VI ? "Chọn tệp tin" : "Choose a file"
+                                }
                             </label>
                             <input
                                 type="file"

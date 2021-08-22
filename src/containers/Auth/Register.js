@@ -224,7 +224,7 @@ class Register extends Component {
 
                     <div className="col-4 form-group">
                         <input
-                            placeholder="birthday"
+                            placeholder="DD/MM/YYY"
                             name="birthday"
                             type="text"
                             className="form-control"

@@ -11,7 +11,7 @@ class VerifyingEmail extends Component {
         super(props)
 
         this.state = {
-            statusVerify: true,
+            statusVerify: false,
             errCode: 2
         }
     }
@@ -34,7 +34,6 @@ class VerifyingEmail extends Component {
 
             }
         }
-
     }
 
     async componentDidUpdate(prevProps) {
@@ -52,11 +51,13 @@ class VerifyingEmail extends Component {
                         !statusVerify ? (
                             <>
                                 <div className="container-loader col-12">
-                                    <div className="loader" /><br />
+                                    <div className="loader" />
                                 </div>
-                                <h4>
-                                    <FormattedMessage id="verify-email.wait" />
-                                </h4>
+                                <div style={{ textAlign: "center" }}>
+                                    <h4>
+                                        <FormattedMessage id="verify-email.wait" />
+                                    </h4>
+                                </div>
                             </>
                         ) : (
                             <>
