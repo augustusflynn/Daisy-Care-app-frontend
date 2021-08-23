@@ -7,9 +7,10 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 //
-import { CommonUtils } from '../../../utils'
-import { createNewSpecialty } from '../../../services/userService'
+import { CRUD_ACTIONS, CommonUtils } from '../../../utils'
+import { createNewSpecialty, getAllSpecialties, deleteSpecialty, editSpecialty } from '../../../services/userService'
 import { toast } from 'react-toastify';
+import TableManageSpecialty from './TableManageSpecialty';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -23,12 +24,25 @@ class ManageSpecialty extends Component {
             nameEn: "",
             imgBase64: "",
             descriptionHTML: "",
-            descriptionMarkdown: ""
+            descriptionMarkdown: "",
+            descriptionMarkdown: "",
+            allSpecialty: [],
+            action: CRUD_ACTIONS.CREATE,
+            id: ''
         }
     }
 
     async componentDidMount() {
+        await this.fetchDataSpecialty()
+    }
 
+    fetchDataSpecialty = async () => {
+        let res = await getAllSpecialties()
+        if (res && res.errCode === 0) {
+            this.setState({
+                allSpecialty: res.data
+            })
+        }
     }
 
     async componentDidUpdate(prevProps) {
@@ -64,23 +78,91 @@ class ManageSpecialty extends Component {
     }
 
     handleSubmit = async () => {
-        let res = await createNewSpecialty(this.state)
-        if (res && res.errCode === 0) {
-            toast.success(res.message)
-            this.setState({
-                nameVi: "",
-                nameEn: "",
-                imgBase64: "",
-                descriptionHTML: "",
-                descriptionMarkdown: ""
+        const {
+            action,
+            nameVi,
+            nameEn,
+            imgBase64,
+            descriptionHTML,
+            descriptionMarkdown,
+            id
+        } = this.state
+
+        if (action === CRUD_ACTIONS.CREATE) {
+            let res = await createNewSpecialty({
+                nameVi,
+                nameEn,
+                descriptionHTML,
+                descriptionMarkdown,
+                imgBase64
             })
+
+            if (res && res.errCode === 0) {
+                toast.success(res.message)
+                this.setState({
+                    nameVi: "",
+                    nameEn: "",
+                    imgBase64: "",
+                    descriptionHTML: "",
+                    descriptionMarkdown: "",
+                    action: CRUD_ACTIONS.CREATE
+                })
+            }
+            else
+                toast.error(res.errMessage)
+        } else {
+            let res = await editSpecialty({
+                nameVi,
+                nameEn,
+                image: imgBase64,
+                descriptionHTML,
+                descriptionMarkdown,
+                id
+            })
+            if (res && res.errCode === 0) {
+                toast.success(res.message)
+                this.setState({
+                    nameVi: "",
+                    nameEn: "",
+                    imgBase64: "",
+                    descriptionHTML: "",
+                    descriptionMarkdown: "",
+                    action: CRUD_ACTIONS.CREATE,
+                    id: ""
+                })
+            }
+            else
+                toast.error(res.errMessage)
         }
-        else
-            toast.error(res.errMessage)
+
+        await this.fetchDataSpecialty()
+    }
+
+    deleteFromParent = async (id) => {
+        let message = await deleteSpecialty(id)
+        if (message && message.errCode === 0) {
+            toast.success(message.message)
+        } else {
+            toast.error(message.errMessage)
+        }
+
+        await this.fetchDataSpecialty()
+    }
+
+    handleEditFromParent = async (item) => {
+        this.setState({
+            nameVi: item.nameVi,
+            nameEn: item.nameEn,
+            image: item.image,
+            descriptionHTML: item.descriptionHTML,
+            descriptionMarkdown: item.descriptionMarkdown,
+            action: CRUD_ACTIONS.EDIT,
+            id: item.id
+        })
     }
 
     render() {
-        const { descriptionMarkdown, nameVi, nameEn } = this.state
+        const { descriptionMarkdown, nameVi, nameEn, allSpecialty } = this.state
 
         return (
             <div className="manage-specialty-container">
@@ -138,6 +220,11 @@ class ManageSpecialty extends Component {
                         </button>
                     </div>
                 </div>
+                <TableManageSpecialty
+                    data={allSpecialty}
+                    deleteFromParent={this.deleteFromParent}
+                    handleEditFromParent={this.handleEditFromParent}
+                />
             </div>
         );
     }

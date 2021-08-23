@@ -87,6 +87,18 @@ export const getDetailSpecialtyById = (data) => {
     return axios.get(`/api/get-detail-specialty-by-id/?id=${data.id}&location=${data.location}`)
 }
 
+export const deleteSpecialty = (id) => {
+    return axios.delete('/api/delete-specialty', {
+        data: {
+            id: id
+        }
+    })
+}
+
+export const editSpecialty = (data) => {
+    return axios.put('/api/edit-specialty', data)
+}
+
 export const createNewClinic = (data) => {
     return axios.post(`/api/create-a-new-clinic`, data)
 }
@@ -101,6 +113,18 @@ export const getAllClinics = () => {
 
 export const getDetailClinicById = (id) => {
     return axios.get(`/api/get-detail-clinic-by-id/?id=${id}`)
+}
+
+export const deleteClinic = (id) => {
+    return axios.delete('/api/delete-clinic', {
+        data: {
+            id: id
+        }
+    })
+}
+
+export const editClinic = (data) => {
+    return axios.put('/api/edit-clinic', data)
 }
 
 export const getAllPatient = (id, date) => {
