@@ -4,6 +4,7 @@ import './RemedyModal.scss'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import { FormattedMessage } from 'react-intl'
 import { CommonUtils } from '../../../utils';
+import { LANGUAGES } from '../../../utils/constant'
 
 class RemedyModal extends Component {
     constructor(props) {

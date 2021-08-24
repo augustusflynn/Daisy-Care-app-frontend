@@ -168,7 +168,7 @@ class ManageDoctor extends Component {
         })
     }
 
-    handleSaveDetailDoctor = () => {
+    handleSaveDetailDoctor = async () => {
         const {
             contentHTML,
             contentMarkdown,
@@ -185,7 +185,7 @@ class ManageDoctor extends Component {
             selectedSpecialty
         } = this.state
 
-        this.props.saveInfoDoctorRedux({
+        await this.props.saveInfoDoctorRedux({
             contentHTML: contentHTML,
             contentMarkdown: contentMarkdown,
             description: description,
@@ -199,6 +199,23 @@ class ManageDoctor extends Component {
             nameClinic: nameClinic,
             clinicAddress: clinicAddress,
             note: note
+        })
+
+        this.setState({
+            contentHTML: "",
+            contentMarkdown: "",
+            description: "",
+            doctorId: "",
+            action: CRUD_ACTIONS.CREATE,
+            selectedPayment: null,
+            selectedPrice: null,
+            selectedProvince: null,
+            selectedSpecialty: null,
+            selectedClinic: null,
+            selectedDoctor: null,
+            nameClinic: "",
+            clinicAddress: "",
+            note: ""
         })
     }
 
