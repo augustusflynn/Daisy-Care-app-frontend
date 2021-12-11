@@ -1,182 +1,76 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import "./UserManage.scss"
-import { connect } from 'react-redux';
-import { getAllUser, createUserService, deleteUser, editUser } from '../../services/userService';
-import ModalUser from './Modal'
-import ModalEditUser from './ModalEditUser';
-import { emitter } from '../../utils/index'
-import { withRouter } from 'react-router'
-// emitter xử  lí được cả thằng cha và thằng con
-// là 1 cái của nodejs
+import { FormattedMessage } from 'react-intl'
+import { useHistory } from 'react-router'
+import { useSelector } from 'react-redux';
 
-class UserManage extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            arrUser: [],
-            isOpenUserModal: false,
-            isOpenEditModal: false,
-            user: {}
-        }
+const arrButton = [
+  {
+    path: "/system/user-manage",
+    name: <FormattedMessage id='menu.admin.crud-redux'/>
+  },
+  {
+    path: '/system/manage-doctor',
+    name: <FormattedMessage id="menu.admin.manage-doctor"/>
+  },
+  {
+    path: '/doctor/manage-schedule',
+    name: <FormattedMessage id="menu.doctor.manage-schedule"/>
+  },
+  {
+    path: "/system/manage-clinic",
+    name: <FormattedMessage id="menu.admin.manage-clinic"/>
+  },
+  {
+    path: "/system/manage-specialty",
+    name: <FormattedMessage id="menu.admin.manage-specialty"/>
+  },
+  {
+    path: '/doctor/manage-patient',
+    name: <FormattedMessage id="menu.doctor.manage-patient"/>
+  }
+]
+
+function UserManage () {
+  const history = useHistory()
+  const { userInfo } = useSelector(state => state.user)
+
+  useEffect(()=>{
+    if(userInfo) {
+      if(userInfo.roleId === "R3") {
+        history.replace('/home')
+      }
+      if(userInfo.roleId ==="R2") {
+        history.replace('/doctor/manage-schedule')
+      }
     }
+  },[userInfo])
 
-    async componentDidMount() {
-        const { user, doctorMenuPath, patientMenuPath } = this.props
-        if (user && user.roleId === "R2")
-            this.props.history.replace(doctorMenuPath)
-        else if (user && user.roleId === "R3")
-            this.props.history.replace(patientMenuPath)
-        else await this.getAllUserFromReact()
-    }
-
-    getAllUserFromReact = async () => {
-        let res = await getAllUser("ALL")
-        if (res && res.errCode === 0)
-            this.setState({
-                arrUser: res.users
-            })
-    }
-
-    handleToggle = (name) => {
-        let copyState = { ...this.state }
-        copyState[name] = !copyState[name]
-        this.setState({
-            ...copyState
-        })
-    }
-
-    createNewUser = async (data) => {
-        try {
-            let res = await createUserService(data)
-            if (res && res.errCode !== 0) {
-                alert(res.errMessage)
-            } else {
-                alert("Created a new user!")
-                await this.getAllUserFromReact()
-                this.setState({ isOpen: false })
-
-                emitter.emit('EVENT_CLEAR_MODAL_DATA') //có thể truyền data ngay sau string event
+  return (
+    <div className="bg px-3">
+      <div className="title text-center"> Manage users with Augustus Flynn</div>
+      <div className="w-100 pt-5">
+        <div className="d-flex justify-content-center">
+          <div className="h5">
+            <FormattedMessage id="homeheader.landing"/>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center pt-3">
+          <div className="row">
+            {
+              arrButton.map(item => {
+                return (<div className="col-12 col-md-4">
+                  <button onClick={() => history.push(item.path)} className="custom-button">
+                    {item.name}
+                  </button>
+                </div>)
+              })
             }
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    handleDeleteUser = async (user) => {
-        if (window.confirm("Are you sure wanna to delete this user ?")) {
-            try {
-                let res = await deleteUser(user.id)
-                if (res && res.errCode === 0) {
-                    await this.getAllUserFromReact()
-                } else {
-                    alert(res.errMessage)
-                }
-            } catch (e) {
-                console.log(e)
-            }
-        }
-    }
-
-    doEditUser = (user) => {
-        this.setState({
-            user: user
-        })
-    }
-
-    handleEditUser = async (user) => {
-        try {
-            let res = await editUser(user)
-            if (res && res.errCode === 0) {
-                this.setState({ isOpenEditModal: false })
-                await this.getAllUserFromReact()
-            } else {
-                alert(res.errMessage)
-            }
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    render() {
-        const { arrUser, isOpenUserModal, isOpenEditModal, user } = this.state
-        return (
-            <div className="bg px-3">
-                <ModalUser
-                    isOpen={isOpenUserModal}
-                    toggle={() => this.handleToggle("isOpenUserModal")}
-                    createNewUser={this.createNewUser}
-                />
-                {isOpenEditModal && (
-                    <ModalEditUser
-                        isOpen={isOpenEditModal}
-                        toggle={() => this.handleToggle("isOpenEditModal")}
-                        user={user}
-                        editUser={this.handleEditUser}
-                    />
-                )}
-                <div className="title text-center"> Manage users with Augustus Flynn</div>
-                <div className="mx-1">
-                    <button
-                        className="btn btn-primary px-3"
-                        onClick={() => this.handleToggle("isOpenUserModal")}
-                    >
-                        <i className="fas fa-plus"></i>
-                        Add a new user
-                    </button>
-                </div>
-                <div className="users-table mt-3">
-                    <table id="customers">
-                        <tbody>
-                            <tr>
-                                <th>Email</th>
-                                <th>First name</th>
-                                <th>Last Name</th>
-                                <th>Address</th>
-                                <th>Action</th>
-                            </tr>
-                            {arrUser && arrUser.map((item, i) => (
-                                <tr key={i}>
-                                    <td>{item.email}</td>
-                                    <td>{item.firstName}</td>
-                                    <td>{item.lastName}</td>
-                                    <td>{item.address}</td>
-                                    <td>
-                                        <button
-                                            className="btn-edit"
-                                            onClick={() => {
-                                                this.handleToggle("isOpenEditModal")
-                                                this.doEditUser(item)
-                                            }}
-                                        >
-                                            <i className="fas fa-pencil-alt "></i>
-                                        </button>
-                                        <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
-                                            <i className="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        );
-    }
-
+          </div>
+        </div>
+        </div>
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user.userInfo,
-        doctorMenuPath: state.app.doctorMenuPath,
-        patientMenuPath: state.app.patientMenuPath
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserManage));
+export default UserManage;

@@ -66,7 +66,7 @@ class Login extends Component {
     }
 
     onKeyPress = (e) => {
-        if (e.keyCode === 13)
+        if (e.charCode === 13)
             this.submit()
     }
 
@@ -103,28 +103,28 @@ class Login extends Component {
                                 className="form-control"
                                 value={email}
                                 onChange={this.handleChangeText}
+                                onKeyPress={this.onKeyPress}
                             />
                         </div>
-
-                        <div id="phone-input-container" className="form-group rowWapper">
+                        <div className="form-group rowWapper">
                             <label>
                                 Password
                             </label>
-                            <div className="passwordWapper">
-                                <input
-                                    placeholder="password"
-                                    name="password"
-                                    type={isShowPassword ? "text" : "password"}
-                                    className="form-control"
-                                    value={password}
-                                    onChange={this.handleChangeText}
-                                />
-                                <span
-                                    onClick={this.handleShowPassword}
-                                >
-                                    <i className={isShowPassword ? "far fa-eye" : "far fa-eye-slash"}></i>
-                                </span>
-                            </div>
+                            <input 
+                                placeholder="password"
+                                name="password"
+                                type={isShowPassword ? "text" : "password"}
+                                className="form-control"
+                                value={password}
+                                onChange={this.handleChangeText}
+                                onKeyPress={this.onKeyPress}
+                            />
+                            <span
+                                onClick={this.handleShowPassword}
+                                className="eye-icon"
+                            >
+                                <i className={isShowPassword ? "far fa-eye" : "far fa-eye-slash"}></i>
+                            </span>
                         </div>
 
                         {err && (

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import * as actions from '../../../store/actions'
 import Slider from "react-slick";
 import { LANGUAGES } from '../../../utils'
+import CustomArrow from '../../../components/customArrow';
 
 class OutStandingDoctor extends Component {
     constructor(props) {

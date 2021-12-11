@@ -12,7 +12,8 @@
         "welcome": "Xin chào, ",
         "total-infections": "Tổng ca nhiễm",
         "recovered": "Số ca khỏi",
-        "deaths": "Số ca tử vong"
+        "deaths": "Số ca tử vong",
+        "landing": "Chào mừng đến với trang quản trị viên"
     },
     "banner": {
         "title1": "DAILY CARE",
@@ -34,9 +35,9 @@
         "admin": {
             "manage-user": "Người dùng",
             "manage-doctor": "Quản lý bác sĩ",
-            "manage-admin": "Quán lý admin",
-            "crud": "CRUD User",
-            "crud-redux": "CRUD Redux",
+            "manage-admin": "Quản lý admin",
+            "crud": "Trang chủ",
+            "crud-redux": "Quản lý người dùng",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
             "specialty": "Chuyên khoa",
@@ -136,5 +137,16 @@
         "time": "Thời gian",
         "confirm": "Xác nhận",
         "bill": "Gửi hóa đơn"
+    },
+    "feature": {
+        "statistical": "Thống kê",
+        "downloadSampleFile": "Tải xuống file mẫu",
+        "upload": "Tải lên",
+        "export": "Xuất file",
+        "selectFile": "Chọn tệp",
+        "wrongfile": "Vui lòng chọn tệp .xlsx",
+        "import": "Nhập dữ liệu",
+        "importSuccess": "Nhập dữ liệu thành công",
+        "importFailed": "Nhập dữ liệu thất bại. Vui lòng thử lại sau"
     }
 }

@@ -29,11 +29,17 @@ class Register extends Component {
 
     async componentDidMount() {
         await this.props.fetchGender()
+        const { genders } = this.props
+        if(genders && genders.length > 0) {
+            this.setState({
+                listGenders: this.buildDataGender(genders)
+            })
+        }
     }
 
     componentDidUpdate(prevProps) {
         const { genders } = this.props
-        if (prevProps.genders !== genders) {
+        if (prevProps.genders.length !== genders.length) {
             this.setState({
                 listGenders: this.buildDataGender(genders)
             })
@@ -244,7 +250,7 @@ class Register extends Component {
                         />
                     </div>
 
-                    <div className="col-4 form-group">
+                    <div className="col-4 form-group ">
                         <input
                             placeholder="phone number"
                             name="phoneNumber"
@@ -260,6 +266,7 @@ class Register extends Component {
                         className="col-4"
                         onChange={this.handleChangeSelect}
                         options={listGenders}
+                        placeholder="Select gender"
                     />
 
                     {err && (

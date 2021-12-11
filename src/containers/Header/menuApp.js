@@ -3,16 +3,19 @@ export const adminMenu = [
         name: 'menu.admin.manage-user',
         menus: [
             {
-                name: 'menu.admin.crud', link: '/system/user-manage',
+                name: 'menu.admin.crud', link: '/system/home-page',
             },
             {
-                name: 'menu.admin.crud-redux', link: '/system/user-redux',
+                name: 'menu.admin.crud-redux', link: '/system/user-manage',
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/manage-doctor',
             },
             { //Quản lí lịch khám bệnh
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            },
+            { //Quản lí bệnh nhân
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient',
             }
         ]
     },

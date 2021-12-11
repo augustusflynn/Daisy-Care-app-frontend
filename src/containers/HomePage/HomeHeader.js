@@ -20,24 +20,24 @@ class HomeHeader extends Component {
     }
 
     handleClickSpecialtyPage = () => {
-        this.props.history.push('/all-specialty')    
-        
+        this.props.history.push('/all-specialty')
+
     }
 
     handleClickClinicPage = () => {
-        this.props.history.push('/all-clinic')    
+        this.props.history.push('/all-clinic')
     }
 
     handleClickViewAllDoctor = () => {
-        this.props.history.push('/all-doctor')    
+        this.props.history.push('/all-doctor')
     }
 
-    handleClickDoctorPage = () => {        
+    handleClickDoctorPage = () => {
         const { user, language } = this.props
-        if(user && user.roleId === "R3") {
+        if (user && user.roleId === "R3") {
             let message = language === LANGUAGES.VI ? "Bạn không có quyền truy cập vào trang này." : "You don't have permission to access this site."
             toast.error(message)
-        } else 
+        } else
             this.props.history.push('/login')
     }
 
@@ -85,6 +85,9 @@ class HomeHeader extends Component {
                         </div>
 
                         <div className="right-content">
+                            <div style={{ marginRight: '5rem' }}>
+                                <a href={process.env.REACT_APP_SUPPORT_URL || "https://romantic-joliot-cfeb4b.netlify.app"} target='_blank'><FormattedMessage id="homeheader.support" /></a>
+                            </div>
                             <div className="support">
                                 <div className={language === LANGUAGES.VI ? 'language-vi active' : "language-vi"}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
                                 <div className={language === LANGUAGES.EN ? 'language-en active' : "language-en"}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
@@ -93,7 +96,7 @@ class HomeHeader extends Component {
                                         <div className="action-button" onClick={this.nagvigateLogin}>
                                             Đăng nhập
                                         </div>
-                                    ): (
+                                    ) : (
                                         <div className="action-button" onClick={this.props.handleLogout}>
                                             Đăng xuất
                                         </div>

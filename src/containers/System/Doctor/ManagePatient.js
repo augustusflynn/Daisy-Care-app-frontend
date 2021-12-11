@@ -9,6 +9,7 @@ import moment from 'moment'
 import RemedyModal from './RemedyModal';
 import { toast } from 'react-toastify';
 import LoadingOverlay from 'react-loading-overlay-ts';
+import { withRouter } from 'react-router'
 
 class ManagePatient extends Component {
     constructor(props) {
@@ -21,10 +22,31 @@ class ManagePatient extends Component {
             dataModal: {},
             isLoading: true
         }
-    }
+    } 
+
+    ArrayButton = [
+        {
+            name: <FormattedMessage id="feature.statistical"/>,
+            onClick: () => {}
+        },
+        {
+            name: <FormattedMessage id="feature.export"/>,
+            onClick: () => {}
+        },
+        {
+            name: <FormattedMessage id="feature.import"/>,
+            onClick: () => {}
+        },
+    ]
+
 
     async componentDidMount() {
-        await this.getDataPatient()
+        const { user } = this.props
+        if(user.roleId === "R2") {
+            this.props.history.replace('/home')
+        } else {
+            await this.getDataPatient()
+        }
     }
 
     getDataPatient = async () => {
@@ -38,10 +60,6 @@ class ManagePatient extends Component {
                 isLoading: isLoading ? false : isLoading
             })
         }
-    }
-
-    async componentDidUpdate(prevProps) {
-
     }
 
     handleChangeDayPicker = (date) => {
@@ -139,6 +157,21 @@ class ManagePatient extends Component {
                                 value={currentDate}
                             />
                         </div>
+                        <div className='col-8'>
+                            <div className="row mt-4">
+                                {
+                                    this.ArrayButton.map(item => {
+                                        return (
+                                            <div className="col-12 col-md-2 mb-3">
+                                                <button onClick={item.onClick} className="custom-button">
+                                                    {item.name}
+                                                </button>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
                         <div className="col-12 table-manage-patient">
                             <table style={{ width: "100%" }}>
                                 <tbody>
@@ -203,4 +236,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManagePatient);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManagePatient));

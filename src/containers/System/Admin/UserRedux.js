@@ -88,7 +88,6 @@ class UserRedux extends Component {
 
             //encode user image
             let b64 = await CommonUtils.getBase64(file)
-            console.log(b64)
             let imgUrl = URL.createObjectURL(file)
             this.setState({
                 previewImg: imgUrl,

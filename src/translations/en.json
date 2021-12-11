@@ -12,7 +12,8 @@
         "welcome": "Welcome,",
         "total-infections": "Total infections",
         "recovered": "Number of recovered cases",
-        "deaths": "Number of deaths"
+        "deaths": "Number of deaths",
+        "landing": "Welcome to admin site"
     },
     "banner": {
         "title1": "DAILY CARE",
@@ -35,8 +36,8 @@
             "manage-user": "Users system",
             "manage-doctor": "Manage doctors",
             "manage-admin": "Manage admin",
-            "crud": "CRUD User",
-            "crud-redux": "CRUD Redux",
+            "crud": "Home page",
+            "crud-redux": "Manage User",
             "clinic": "Clinics",
             "manage-clinic": "Manage clinics",
             "specialty": "Specialties",
@@ -136,5 +137,16 @@
         "time": "Time",
         "confirm": "Confirm",
         "bill": "Send the bill"
+    },
+    "feature": {
+        "statistical": "Statistical",
+        "downloadSampleFile": "Download sample file",
+        "upload": "Upload a file",
+        "export": "Export file",
+        "selectFile": "Select a file",
+        "wrongfile": "Please choose .xlsx file",
+        "import": "Import data",
+        "importSuccess": "Import data successfully",
+        "importFailed": "Import data failed. Please try again"
     }
 }
