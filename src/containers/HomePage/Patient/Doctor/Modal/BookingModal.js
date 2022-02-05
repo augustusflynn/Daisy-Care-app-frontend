@@ -162,8 +162,7 @@ class BookingModal extends Component {
         let formattedDate = new Date(birthday).getTime()
         let timeString = this.buildTimeBooking(dataSchedule)
         let doctorName = this.buildDoctorName(dataSchedule)
-
-        let res = await postBookingAppointment({
+        const dataUser = {
             firstName: firstName,
             lastName: lastName,
             phoneNumber: phoneNumber,
@@ -178,7 +177,12 @@ class BookingModal extends Component {
             language: language,
             timeString: timeString,
             doctorName: doctorName
-        })
+        }
+
+        let res = await postBookingAppointment(dataUser)
+        if (this.props.isLoggedIn) {
+            this.props.updateUserInfo(dataUser)
+        }
 
         if (res && res.errCode === 0) {
             toast.success(res.message)
@@ -387,13 +391,15 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         genders: state.admin.genders,
-        user: state.user.userInfo
+        user: state.user.userInfo,
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchGender: () => dispatch(actions.fetchGenderStart())
+        fetchGender: () => dispatch(actions.fetchGenderStart()),
+        updateUserInfo: (data) => dispatch(actions.updateUserInfo(data))
     };
 };
 

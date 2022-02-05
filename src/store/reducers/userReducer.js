@@ -25,6 +25,15 @@ const appReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 userInfo: null
             }
+        case actionTypes.UPDATE_USER_INFO: {
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    ...action.payload
+                }
+            }
+        }
         default:
             return state;
     }

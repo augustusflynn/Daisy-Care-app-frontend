@@ -16,7 +16,12 @@ export const userLoginFail = () => ({
 export const processLogout = () => {
     window.location.href = "/home"
     window.localStorage.clear()
-    return  ({
+    return ({
         type: actionTypes.PROCESS_LOGOUT
     })
 }
+
+export const updateUserInfo = (payload) => ({
+    type: actionTypes.UPDATE_USER_INFO,
+    payload: payload
+})
