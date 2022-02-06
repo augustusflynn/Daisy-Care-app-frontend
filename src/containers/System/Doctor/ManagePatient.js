@@ -22,27 +22,27 @@ class ManagePatient extends Component {
             dataModal: {},
             isLoading: true
         }
-    } 
+    }
 
     ArrayButton = [
         {
-            name: <FormattedMessage id="feature.statistical"/>,
-            onClick: () => {}
+            name: <FormattedMessage id="feature.statistical" />,
+            onClick: () => { }
         },
         {
-            name: <FormattedMessage id="feature.export"/>,
-            onClick: () => {}
+            name: <FormattedMessage id="feature.export" />,
+            onClick: () => { }
         },
         {
-            name: <FormattedMessage id="feature.import"/>,
-            onClick: () => {}
-        },
-    ]
+            name: <FormattedMessage id="feature.import" />,
+            onClick: () => { }
 
+        }
+   ]
 
     async componentDidMount() {
         const { user } = this.props
-        if(user.roleId === "R2") {
+        if (user.roleId === "R3") {
             this.props.history.replace('/home')
         } else {
             await this.getDataPatient()

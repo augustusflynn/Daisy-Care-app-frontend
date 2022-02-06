@@ -46,10 +46,6 @@ class ManageClinic extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps) {
-
-    }
-
     handleEditorChange = ({ html, text }) => {
         this.setState({
             descriptionMarkdown: text,
