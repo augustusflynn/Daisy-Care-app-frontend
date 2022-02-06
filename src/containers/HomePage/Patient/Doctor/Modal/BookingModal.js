@@ -36,7 +36,8 @@ class BookingModal extends Component {
     async componentDidMount() {
         await this.props.fetchGender()
         const { user, genders } = this.props
-        if (!!user && !_.isEmpty(user)) {
+
+        if (user && !_.isEmpty(user)) {
             this.setState({
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -94,7 +95,6 @@ class BookingModal extends Component {
         copyState[name] = value
         this.setState({ ...copyState })
     }
-
 
     buildDataGender = (data) => {
         const { language } = this.props

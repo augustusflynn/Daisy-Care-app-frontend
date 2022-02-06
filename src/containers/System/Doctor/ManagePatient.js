@@ -36,9 +36,9 @@ class ManagePatient extends Component {
         {
             name: <FormattedMessage id="feature.import" />,
             onClick: () => { }
-        },
-    ]
 
+        }
+   ]
 
     async componentDidMount() {
         const { user } = this.props

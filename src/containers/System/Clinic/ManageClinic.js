@@ -179,7 +179,7 @@ class ManageClinic extends Component {
                 <div className="add-new-specialty row">
                     <div className="col-3 form-group">
                         <label>
-                            <FormattedMessage id="manage-doctor.clinic-name" />
+                            Tên phòng khám
                         </label>
                         <input
                             className="form-control"

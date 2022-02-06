@@ -168,7 +168,7 @@ class UserRedux extends Component {
                 birthday: birthday
             })
         }
-        // window.location.reload()
+        this.setState({ isLoading: false })
     }
 
     onChangInput = (event) => {
