@@ -46,10 +46,6 @@ class ManageClinic extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps) {
-
-    }
-
     handleEditorChange = ({ html, text }) => {
         this.setState({
             descriptionMarkdown: text,
@@ -183,7 +179,7 @@ class ManageClinic extends Component {
                 <div className="add-new-specialty row">
                     <div className="col-3 form-group">
                         <label>
-                            Tên phòng khám
+                            <FormattedMessage id="manage-doctor.clinic-name" />
                         </label>
                         <input
                             className="form-control"

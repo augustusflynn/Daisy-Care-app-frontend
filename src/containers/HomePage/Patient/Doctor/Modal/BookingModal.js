@@ -7,7 +7,7 @@ import ProfileDoctor from '../ProfileDoctor';
 import * as actions from '../../../../../store/actions'
 import { LANGUAGES } from '../../../../../utils';
 import Select from 'react-select'
-import { postBookingAppointment } from '../../../../../services/userService'
+import { editUser, postBookingAppointment } from '../../../../../services/userService'
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 import moment from 'moment';
@@ -36,8 +36,7 @@ class BookingModal extends Component {
     async componentDidMount() {
         await this.props.fetchGender()
         const { user, genders } = this.props
-
-        if (user && !_.isEmpty(user)) {
+        if (!!user && !_.isEmpty(user)) {
             this.setState({
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -69,17 +68,24 @@ class BookingModal extends Component {
     }
 
     buildFirstGenderSelect = (genders) => {
-        const { language } = this.props
-        let result = {}
-        for (let i = 0; i < genders.length; i++) {
-            if (genders[i].keyMap === this.props.user.gender) {
-                result.value = genders[i].keyMap;
-                result.label = language === LANGUAGES.VI ? genders[i].valueVi : genders[i].valueEn
-                break
+        const { language, user } = this.props
+        if (user && !_.isEmpty(user)) {
+            let result = {}
+            for (let i = 0; i < genders.length; i++) {
+                if (genders[i].keyMap === user.gender) {
+                    result.value = genders[i].keyMap;
+                    result.label = language === LANGUAGES.VI ? genders[i].valueVi : genders[i].valueEn
+                    break
+                }
+            }
+
+            return result
+        } else {
+            return {
+                label: genders[0].label,
+                value: genders[0].keyMap
             }
         }
-
-        return result
     }
 
     onChangeText = (e) => {
@@ -89,9 +95,6 @@ class BookingModal extends Component {
         this.setState({ ...copyState })
     }
 
-    handleChangeDayPicker = (date) => {
-        this.setState({ birthday: date[0] })
-    }
 
     buildDataGender = (data) => {
         const { language } = this.props
@@ -181,7 +184,15 @@ class BookingModal extends Component {
 
         let res = await postBookingAppointment(dataUser)
         if (this.props.isLoggedIn) {
-            this.props.updateUserInfo(dataUser)
+            editUser({
+                ...dataUser,
+                birthday: birthday,
+                id: this.props.user.id
+            })
+            this.props.updateUserInfo({
+                ...dataUser,
+                birthday: birthday
+            })
         }
 
         if (res && res.errCode === 0) {

@@ -7,44 +7,44 @@ import { useSelector } from 'react-redux';
 const arrButton = [
   {
     path: "/system/user-manage",
-    name: <FormattedMessage id='menu.admin.crud-redux'/>
+    name: <FormattedMessage id='menu.admin.crud-redux' />
   },
   {
     path: '/system/manage-doctor',
-    name: <FormattedMessage id="menu.admin.manage-doctor"/>
+    name: <FormattedMessage id="menu.admin.manage-doctor" />
   },
   {
     path: '/doctor/manage-schedule',
-    name: <FormattedMessage id="menu.doctor.manage-schedule"/>
+    name: <FormattedMessage id="menu.doctor.manage-schedule" />
   },
   {
     path: "/system/manage-clinic",
-    name: <FormattedMessage id="menu.admin.manage-clinic"/>
+    name: <FormattedMessage id="menu.admin.manage-clinic" />
   },
   {
     path: "/system/manage-specialty",
-    name: <FormattedMessage id="menu.admin.manage-specialty"/>
+    name: <FormattedMessage id="menu.admin.manage-specialty" />
   },
   {
     path: '/doctor/manage-patient',
-    name: <FormattedMessage id="menu.doctor.manage-patient"/>
+    name: <FormattedMessage id="menu.doctor.manage-patient" />
   }
 ]
 
-function UserManage () {
+function UserManage() {
   const history = useHistory()
   const { userInfo } = useSelector(state => state.user)
 
-  useEffect(()=>{
-    if(userInfo) {
-      if(userInfo.roleId === "R3") {
+  useEffect(() => {
+    if (userInfo) {
+      if (userInfo.roleId === "R3") {
         history.replace('/home')
       }
-      if(userInfo.roleId ==="R2") {
+      if (userInfo.roleId === "R2") {
         history.replace('/doctor/manage-schedule')
       }
     }
-  },[userInfo])
+  }, [userInfo])
 
   return (
     <div className="bg px-3">
@@ -52,7 +52,7 @@ function UserManage () {
       <div className="w-100 pt-5">
         <div className="d-flex justify-content-center">
           <div className="h5">
-            <FormattedMessage id="homeheader.landing"/>
+            <FormattedMessage id="homeheader.landing" />
           </div>
         </div>
         <div className="d-flex justify-content-center pt-3">
@@ -68,7 +68,7 @@ function UserManage () {
             }
           </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ class UserRedux extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         const { genderRedux, roleRedux, positionRedux, users } = this.props
         if (prevProps.genderRedux !== genderRedux) {
             this.setState({
@@ -168,8 +168,7 @@ class UserRedux extends Component {
                 birthday: birthday
             })
         }
-
-        this.setState({ isLoading: false })
+        // window.location.reload()
     }
 
     onChangInput = (event) => {
