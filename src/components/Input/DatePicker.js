@@ -57,7 +57,7 @@ class DatePicker extends Component {
 
     onOpen = () => {
         if (this.flatpickrNode) {
-            this.flatpickrNode.blur();
+            // this.flatpickrNode.blur();
         }
     }
 

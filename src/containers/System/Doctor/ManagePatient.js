@@ -42,7 +42,7 @@ class ManagePatient extends Component {
 
     async componentDidMount() {
         const { user } = this.props
-        if (user.roleId === "R3") {
+        if (user.roleId !== "R2") {
             this.props.history.replace('/home')
         } else {
             await this.getDataPatient()
@@ -230,10 +230,4 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-
-    };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManagePatient));
+export default withRouter(connect(mapStateToProps, null)(ManagePatient));

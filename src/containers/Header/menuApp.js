@@ -11,12 +11,12 @@ export const adminMenu = [
             {
                 name: 'menu.admin.manage-doctor', link: '/system/manage-doctor',
             },
-            { //Quản lí lịch khám bệnh
-                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
-            },
-            { //Quản lí bệnh nhân
-                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient',
-            }
+            // { //Quản lí lịch khám bệnh
+            //     name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            // },
+            // { //Quản lí bệnh nhân
+            //     name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient',
+            // }
         ]
     },
     { //Quản lí phòng khám

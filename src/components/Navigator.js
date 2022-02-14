@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 
 import './Navigator.scss';
 
@@ -233,14 +232,4 @@ class Navigator extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-    }
-}
-
-export default withRouterInnerRef(connect(mapStateToProps, mapDispatchToProps)(Navigator));
+export default withRouterInnerRef(Navigator);
