@@ -5,6 +5,7 @@ import * as actions from '../../store/actions';
 import './Login.scss';
 import { handleLogin } from '../../services/userService';
 import { withRouter } from 'react-router'
+import { FormattedMessage } from 'react-intl'
 
 
 class Login extends Component {
@@ -20,15 +21,16 @@ class Login extends Component {
     }
 
     validateInput = () => {
+        const { language } = this.props
         if (this.state.email === "")
             return {
                 errCode: 1,
-                errMessage: "Mising required email parameter!"
+                errMessage: language === 'vi' ? "Email không được để trống" : "Mising required email parameter!"
             }
         if (this.state.password === "")
             return {
                 errCode: 1,
-                errMessage: "Mising required password parameter!"
+                errMessage: language === 'vi' ? "Mật khẩu không hợp lệ" : "Mising required password parameter!"
             }
         return {
             errCode: 0
@@ -77,19 +79,16 @@ class Login extends Component {
         this.setState(cpState)
     }
 
-    naviagteRegister = () => {
-        this.props.history.push('/register')
-    }
-
     render() {
         const { email, password, isShowPassword, err } = this.state
+        const { language } = this.props
 
         return (
             <div className="login-bg">
                 <div id="loginform">
                     <div id="form_login">
                         <h2 id="headerTitle">
-                            Login
+                            {language === 'vi' ? "Đăng nhập" : "Sign in"}
                         </h2>
                         <div className="form-group rowWapper">
                             <label>
@@ -108,10 +107,10 @@ class Login extends Component {
                         </div>
                         <div className="form-group rowWapper">
                             <label>
-                                Password
+                                {language === 'vi' ? "Mật khẩu" : "Password"}
                             </label>
                             <input 
-                                placeholder="password"
+                                placeholder={language === 'vi' ? "Mật khẩu" : "Password"}
                                 name="password"
                                 type={isShowPassword ? "text" : "password"}
                                 className="form-control"
@@ -137,14 +136,7 @@ class Login extends Component {
                             <button
                                 onClick={this.submit}
                                 className="btn"
-                            >Sign in</button>
-
-                        </div>
-                        <div className="btn btn-register">
-                            <button
-                                onClick={this.naviagteRegister}
-                                className="btn"
-                            >Sign up</button>
+                            >{language === 'vi' ? "Đăng nhập" : "Sign in"}</button>
 
                         </div>
                     </div>

@@ -57,14 +57,15 @@ class MeicalFacility extends Component {
                                         >
                                             <div
                                                 className="bg-img section-medical-facility"
-                                                style={{ backgroundImage: `url(${item.image})` }}
+                                                style={{ backgroundImage: `url(${item.image})`, margin: '0 auto' }}
                                             />
                                             <div
                                                 style={{
                                                     paddingTop: "30px",
                                                     fontWeight: "500",
                                                     fontSize: "15px",
-                                                    paddingLeft: "15px"
+                                                    paddingLeft: "15px",
+                                                    textAlign: 'center'
                                                 }}
                                             >{language === LANGUAGES.VI ? item.nameVi : item.nameEn}</div>
                                         </div>
@@ -89,9 +90,4 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MeicalFacility));
+export default withRouter(connect(mapStateToProps, null)(MeicalFacility));

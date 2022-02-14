@@ -123,7 +123,7 @@ class HomeHeader extends Component {
                         </div>
                         <div className="others-media">
                             <div className="ios-app"></div>
-                            <div className="android-app"></div>
+                            <div onClick={() => window.open(process.env.REACT_APP_MOBILE_URL, "_blank")} className="android-app"></div>
                         </div>
 
                         <div className="options">
