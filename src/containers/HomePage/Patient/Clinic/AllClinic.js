@@ -71,7 +71,6 @@ class AllClinic extends Component {
     handleChangeSelectClinic = (item) => {
         this.props.history.push(`/detail-clinic/${item.value}`)
     }
-
     render() {
         const { allClinic, language } = this.props
         const { listClinic } = this.state
@@ -101,9 +100,8 @@ class AllClinic extends Component {
                                         style={{ backgroundImage: `url(${item.image})`, marginRight: '10px' }}
                                     />
                                     <div className="content-right">
-                                        <span className="a-s-title">
-                                            {name}
-                                        </span>
+                                        <div className="a-s-title">{name}</div>
+                                        <div>{item.address || ""}</div>
                                     </div>
                                 </div>
                             )

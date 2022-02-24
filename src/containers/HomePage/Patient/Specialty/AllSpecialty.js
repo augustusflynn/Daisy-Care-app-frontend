@@ -23,10 +23,6 @@ class AllSpecialty extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps) {
-
-    }
-
     handleViewDetailSpecialty = (item) => {
         this.props.history.push(`/detail-specialty/${item.id}`)
     }

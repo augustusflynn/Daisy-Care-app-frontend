@@ -79,7 +79,7 @@ class AllDoctor extends Component {
     render() {
         const { allDoctorsDetail, language } = this.props
         const { listDoctor } = this.state
-
+        console.log(allDoctorsDetail);
         return (
             <>
                 <HomeHeader />
