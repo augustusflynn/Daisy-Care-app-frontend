@@ -5,7 +5,6 @@ import { withRouter } from 'react-router'
 import * as actions from '../../../store/actions'
 import Slider from "react-slick";
 import { LANGUAGES } from '../../../utils'
-import CustomArrow from '../../../components/customArrow';
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -71,10 +70,6 @@ class OutStandingDoctor extends Component {
                             {arrDoctos && arrDoctos.length > 0 && arrDoctos.map((item, i) => {
                                 let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName} `
                                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`
-                                let imgBase64 = "";
-                                if (item.image) {
-                                    imgBase64 = Buffer.from(item.image, 'base64').toString('binary')
-                                }
 
                                 return (
                                     <div
@@ -86,7 +81,7 @@ class OutStandingDoctor extends Component {
                                             <div className="outer-bg">
                                                 <div
                                                     className="bg-img section-outstanding-doctor"
-                                                    style={{ backgroundImage: `url(${imgBase64})` }}
+                                                    style={{ backgroundImage: `url(${item.image})` }}
                                                 />
                                             </div>
                                             <div className="position text-center text-hover">
