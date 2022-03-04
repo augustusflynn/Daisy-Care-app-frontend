@@ -25,26 +25,29 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <!-- Messenger Chat Plugin Code -->
+  <!-- Messenger Plugin chat Code -->
   <div id="fb-root"></div>
 
-  <!-- Your Chat Plugin code -->
+  <!-- Your Plugin chat code -->
   <div id="fb-customer-chat" class="fb-customerchat">
   </div>
 
   <script>
     var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "104084708660465");
+    chatbox.setAttribute("page_id", "106667941967688");
     chatbox.setAttribute("attribution", "biz_inbox");
+  </script>
 
-    window.fbAsyncInit = function () {
+  <!-- Your SDK code -->
+  <script>
+    window.fbAsyncInit = function() {
       FB.init({
-        xfbml: true,
-        version: 'v11.0'
+        xfbml            : true,
+        version          : 'v13.0'
       });
     };
 
-    (function (d, s, id) {
+    (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
