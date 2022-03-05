@@ -79,11 +79,11 @@ class AllDoctor extends Component {
     render() {
         const { allDoctorsDetail, language } = this.props
         const { listDoctor } = this.state
-        console.log(allDoctorsDetail);
+
         return (
             <>
                 <HomeHeader />
-                <div style={{ marginTop: "80px" }} />
+                <div style={{ marginTop: "120px" }} />
                 <Select
                     onChange={this.handleChangeSelect}
                     options={listDoctor}
@@ -92,7 +92,7 @@ class AllDoctor extends Component {
                 />
                 <div className="all-doctor-container">
                     {
-                        allDoctorsDetail && allDoctorsDetail.map((item, index) => {
+                        allDoctorsDetail && allDoctorsDetail.length > 0 ? allDoctorsDetail.map((item, index) => {
                             let name = language === LANGUAGES.VI ?
                                 `${item.lastName} ${item.firstName}` :
                                 `${item.firstName} ${item.lastName}`
@@ -124,7 +124,12 @@ class AllDoctor extends Component {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : (
+                            <div className='empty_content'>
+                                No data<br/>
+                                <span class="iconify" data-icon="icomoon-free:file-empty"></span>
+                            </div>
+                        )
                     }
                 </div>
                 <HomeFooter />

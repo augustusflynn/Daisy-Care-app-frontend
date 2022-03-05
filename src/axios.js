@@ -2,7 +2,7 @@ import axios from 'axios';
 // import _ from 'lodash';
 
 const instance = axios.create({
-    baseURL: "https://daisycare-backend.herokuapp.com",
+    baseURL: process.env.REACT_APP_SERVER_URL,
     // withCredentials: true
 });
 

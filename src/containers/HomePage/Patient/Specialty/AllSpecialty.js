@@ -36,7 +36,7 @@ class AllSpecialty extends Component {
                 <div style={{ marginTop: "100px" }} />
                 <div className="all-specialty-container">
                     {
-                        allSpecialty && allSpecialty.map((item, index) => {
+                        allSpecialty && allSpecialty.length > 0 ? allSpecialty.map((item, index) => {
                             let name = language === LANGUAGES.VI ? item.nameVi : item.nameEn
                             return (
                                 <div
@@ -55,7 +55,12 @@ class AllSpecialty extends Component {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : (
+                            <div className='empty_content'>
+                                No data<br/>
+                                <span class="iconify" data-icon="icomoon-free:file-empty"></span>
+                            </div>
+                        )
                     }
                 </div>
                 <HomeFooter />

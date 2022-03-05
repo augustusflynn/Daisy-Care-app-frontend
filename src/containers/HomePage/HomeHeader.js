@@ -53,7 +53,7 @@ class HomeHeader extends Component {
 
                     <div className="home-header-content">
                         <div className="left-content">
-                            <i className="fas fa-bars btnIcon" />
+                            {/* <i className="fas fa-bars btnIcon" /> */}
                             <img
                                 className="header-logo"
                                 src={logo}
@@ -125,7 +125,7 @@ class HomeHeader extends Component {
                             <div className="ios-app"></div>
                             <div onClick={() => window.open(process.env.REACT_APP_MOBILE_URL, "_blank")} className="android-app"></div>
                         </div>
-
+ 
                         <div className="options">
                             <div className="options-child">
                                 <div className="icon-child">

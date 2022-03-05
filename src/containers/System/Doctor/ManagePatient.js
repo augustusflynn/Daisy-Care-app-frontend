@@ -35,7 +35,9 @@ class ManagePatient extends Component {
         },
         {
             name: <FormattedMessage id="feature.import" />,
-            onClick: () => { }
+            onClick: () => { 
+                window.open(process.env.REACT_APP_SERVER_URL + '/upload/sampleImport.xlsx', '_blank')
+            }
 
         }
    ]

@@ -78,7 +78,7 @@ class AllClinic extends Component {
         return (
             <>
                 <HomeHeader />
-                <div style={{ marginTop: "80px" }} />
+                <div style={{ marginTop: "120px" }} />
                 <Select
                     onChange={this.handleChangeSelectClinic}
                     options={listClinic}
@@ -87,7 +87,7 @@ class AllClinic extends Component {
                 />
                 <div className="all-specialty-container">
                     {
-                        allClinic && allClinic.map((item, index) => {
+                        allClinic && allClinic.length > 0 ? allClinic.map((item, index) => {
                             let name = language === LANGUAGES.VI ? item.nameVi : item.nameEn
                             return (
                                 <div
@@ -105,7 +105,12 @@ class AllClinic extends Component {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : (
+                            <div className='empty_content'>
+                                No data<br/>
+                                <span class="iconify" data-icon="icomoon-free:file-empty"></span>
+                            </div>
+                        )
                     }
                 </div>
                 <HomeFooter />

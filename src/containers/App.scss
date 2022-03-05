@@ -20,3 +20,13 @@ body {
     box-shadow: 1px 1px rgb(166, 209, 238);
   }
 }
+
+.empty_content {
+  text-align: center !important;
+  font-size: 32px;
+  color: #ccc;
+  i {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}

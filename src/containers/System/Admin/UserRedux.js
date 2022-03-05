@@ -44,7 +44,6 @@ class UserRedux extends Component {
             })
         }
         if (prevProps.roleRedux !== roleRedux) {
-            console.log(roleRedux)
             this.setState({
                 roleArr: roleRedux,
                 role: roleRedux[0] ? roleRedux[0].keyMap : "R1"
@@ -431,6 +430,7 @@ class UserRedux extends Component {
                                 <TableManageUser
                                     handleEditUserFromParent={this.handleEditUserFromParent}
                                     action={action}
+                                    hideMarkdown
                                 />
                             </div>
                         </div>
