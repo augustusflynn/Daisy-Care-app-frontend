@@ -30,14 +30,18 @@ class ManagePatient extends Component {
             onClick: () => { }
         },
         {
+            name: 'Tải file mẫu',
+            onClick: () => {
+                window.open(process.env.REACT_APP_SERVER_URL + '/upload/sampleImport.xlsx', '_blank')
+            }
+        },
+        {
             name: <FormattedMessage id="feature.export" />,
             onClick: () => { }
         },
         {
             name: <FormattedMessage id="feature.import" />,
-            onClick: () => { 
-                window.open(process.env.REACT_APP_SERVER_URL + '/upload/sampleImport.xlsx', '_blank')
-            }
+            onClick: () => { }
 
         }
    ]
