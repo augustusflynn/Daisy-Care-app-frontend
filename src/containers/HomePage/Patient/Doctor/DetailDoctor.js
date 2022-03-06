@@ -31,10 +31,6 @@ class DetailDoctor extends Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-
-    }
-
     getProvinceName = () => {
         const { detailDoctor } = this.state
         const { language } = this.props
@@ -58,7 +54,7 @@ class DetailDoctor extends Component {
         }
 
         let currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
-            "https://augustus-flynn-chatbot.herokuapp.com/" :
+            "https://daisycare-bot.herokuapp.com/" :
             window.location.href
 
         return (
@@ -78,13 +74,14 @@ class DetailDoctor extends Component {
                             <div className="up">
                                 {language === LANGUAGES.VI ? nameVi : nameEn}
                             </div>
-
                             <div className="down">
                                 {
                                     (detailDoctor.Markdown && detailDoctor.Markdown.description) &&
-                                    <span>
-                                        {detailDoctor.Markdown.description}
-                                    </span>
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: detailDoctor.Markdown.description.replace('\n', '<br/>') 
+                                        }}
+                                    />
                                 }
                                 <br />
                                 <LikeButton
