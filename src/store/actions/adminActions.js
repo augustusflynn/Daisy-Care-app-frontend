@@ -95,7 +95,7 @@ export const fetchRoleFailed = () => ({
     type: actionTypes.FETCH_ROLE_FAIL
 })
 
-export const createUser = (data) => {
+export const createUser = (data, cb) => {
     return async (dispatch) => {
         try {
 
@@ -104,6 +104,7 @@ export const createUser = (data) => {
                 toast.success("Create a user successed!")
                 dispatch(saveUserSuccess(res.data))
                 dispatch(fetchAllUsersStart())
+                cb()
             } else {
                 toast.error("Something went rong :( !")
                 dispatch(saveUserFail())
@@ -179,7 +180,7 @@ export const deleteUserFail = () => ({
     type: actionTypes.DELETE_USER_FAIL
 })
 
-export const editAUser = (data) => {
+export const editAUser = (data, cb) => {
     return async (dispatch) => {
         try {
 
@@ -188,6 +189,7 @@ export const editAUser = (data) => {
                 toast.warn("Update user successed!")
                 dispatch(editUserSuccess(res.data))
                 dispatch(fetchAllUsersStart())
+                cb()
             } else {
                 toast.error("Update user info failed :( !")
                 dispatch(editUserFail())

@@ -60,8 +60,9 @@ class ManageClinic extends Component {
         this.setState({ ...copyState })
     }
 
-    handleChangeImg = async (files) => {
-        if (files) {
+    handleChangeImg = async (e) => {
+        let files = e.target.files
+        if (files && files[0]) {
             let file = files[0]
 
             //encode user image
@@ -208,7 +209,7 @@ class ManageClinic extends Component {
                         <input
                             className="form-control-file"
                             type="file"
-                            onChange={(e) => this.handleChangeImg(e.target.files)}
+                            onChange={this.handleChangeImg}
                         />
                     </div>
 

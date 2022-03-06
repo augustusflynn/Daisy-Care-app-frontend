@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
 import "./TableManageSpecialty.scss"
-import { connect } from 'react-redux';
 
 class TableManageSpecialty extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-        }
-    }
-
-    async componentDidMount() {
-
-    }
-
-    componentDidUpdate(prevProps) {
     }
 
     handleDelete = (user) => {
@@ -31,7 +21,7 @@ class TableManageSpecialty extends Component {
                 <table id="table-manage-user">
                     <tbody>
                         <tr>
-                            <th>Tên phòng khám</th>
+                            <th>Tên chuyên khoa</th>
                             <th>Specialty's name</th>
                             <th>Action</th>
                         </tr>
@@ -64,14 +54,4 @@ class TableManageSpecialty extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageSpecialty);
+export default TableManageSpecialty;

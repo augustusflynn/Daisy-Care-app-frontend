@@ -106,7 +106,7 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ marginTop: "60px" }} />
+                <div style={{ marginTop: "80px" }} />
                 {isShowBanner &&
                     <div className="home-header-banner">
                         <div className="bar">

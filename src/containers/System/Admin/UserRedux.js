@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../utils'
 import * as actions from '../../../store/actions'
 import "./UserRedux.scss"
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
@@ -13,9 +14,6 @@ class UserRedux extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            genderArr: [],
-            roleArr: [],
-            positionArr: [],
             previewImg: '',
             isOpen: false,
 
@@ -31,47 +29,8 @@ class UserRedux extends Component {
             avartar: '',
             id: '',
             birthday: '',
-            action: CRUD_ACTIONS.CREATE
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const { genderRedux, roleRedux, positionRedux, users } = this.props
-        if (prevProps.genderRedux !== genderRedux) {
-            this.setState({
-                genderArr: genderRedux,
-                gender: genderRedux[0] ? genderRedux[0].keyMap : "M"
-            })
-        }
-        if (prevProps.roleRedux !== roleRedux) {
-            this.setState({
-                roleArr: roleRedux,
-                role: roleRedux[0] ? roleRedux[0].keyMap : "R1"
-            })
-        }
-        if (prevProps.positionRedux !== positionRedux) {
-            this.setState({
-                positionArr: positionRedux,
-                position: positionRedux[0] ? positionRedux[0].keyMap : "P0"
-            })
-        }
-        if (prevProps.users !== users) {
-            this.setState({
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                phoneNumber: '',
-                address: '',
-                gender: genderRedux[0] ? genderRedux[0].keyMap : "M",
-                position: positionRedux[0] ? positionRedux[0].kekeyMapy : "P0",
-                role: roleRedux[0] ? roleRedux[0].keyMap : "R1",
-                avartar: '',
-                id: '',
-                action: CRUD_ACTIONS.CREATE,
-                previewImg: '',
-                birthday: ''
-            })
+            action: CRUD_ACTIONS.CREATE,
+            isLoading: false
         }
     }
 
@@ -116,8 +75,27 @@ class UserRedux extends Component {
         return isValid
     }
 
+    resetInput = () => {
+        this.setState({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: '',
+            position: '',
+            role: '',
+            avartar: '',
+            id: '',
+            action: CRUD_ACTIONS.CREATE,
+            previewImg: '',
+            birthday: '',
+            isLoading: false
+        })
+    }
+
     handleSaveUser = () => {
-        this.setState({ isLoading: true })
         const {
             email,
             password,
@@ -136,6 +114,7 @@ class UserRedux extends Component {
 
         let isValid = this.validateInput()
         if (!isValid) return
+        this.setState({ isLoading: true })
 
         if (action === CRUD_ACTIONS.CREATE) {
             this.props.createUser({
@@ -150,7 +129,7 @@ class UserRedux extends Component {
                 positionId: position,
                 image: avartar || "",
                 birthday: birthday
-            })
+            }, this.resetInput)
         } else if (action === CRUD_ACTIONS.EDIT) {
             this.props.editAUser({
                 id: id,
@@ -165,9 +144,8 @@ class UserRedux extends Component {
                 positionId: position,
                 image: avartar || "",
                 birthday: birthday
-            })
+            }, this.resetInput)
         }
-        this.setState({ isLoading: false })
     }
 
     onChangInput = (event) => {
@@ -206,9 +184,6 @@ class UserRedux extends Component {
 
     render() {
         const {
-            genderArr,
-            roleArr,
-            positionArr,
             previewImg,
             isOpen,
             email,
@@ -221,10 +196,21 @@ class UserRedux extends Component {
             position,
             gender,
             birthday,
-            action
+            action,
+            isLoading
         } = this.state
-        const { language, isLoading } = this.props
+        const { 
+            language,
+            genderRedux: genderArr,
+            roleRedux: roleArr,
+            positionRedux: positionArr
+        } = this.props
         return (
+            <LoadingOverlay
+                active={isLoading}
+                spinner
+                text={language === LANGUAGES.VI ? 'Đang gửi...' : 'Sending content...'}
+            >
             <div className="user-redux-container">
                 <div className="title">
                     <FormattedMessage id="manage-user.add" />
@@ -312,6 +298,15 @@ class UserRedux extends Component {
                                     onChange={this.onChangInput}
                                     value={gender}
                                 >
+                                    <option
+                                        value={''}
+                                    >
+                                        {
+                                            language === LANGUAGES.VI ?
+                                                'Chọn giới tính' :
+                                                'Select gender'
+                                        }
+                                    </option>
                                     {genderArr && genderArr.length > 0 && (
                                         genderArr.map((item, index) => (
                                             <option
@@ -337,6 +332,15 @@ class UserRedux extends Component {
                                     onChange={this.onChangInput}
                                     value={role}
                                 >
+                                    <option
+                                        value={''}
+                                    >
+                                        {
+                                            language === LANGUAGES.VI ?
+                                                'Chọn vai trò' :
+                                                'Select role'
+                                        }
+                                    </option>
                                     {roleArr && roleArr.length > 0 && (
                                         roleArr.map((item, index) => (
                                             <option
@@ -362,6 +366,15 @@ class UserRedux extends Component {
                                     onChange={this.onChangInput}
                                     value={position}
                                 >
+                                    <option
+                                        value={''}
+                                    >
+                                        {
+                                            language === LANGUAGES.VI ?
+                                                'Chọn vị trí' :
+                                                'Select position'
+                                        }
+                                    </option>
                                     {positionArr && positionArr.length > 0 && (
                                         positionArr.map((item, index) => (
                                             <option
@@ -443,6 +456,7 @@ class UserRedux extends Component {
                     />
                 )}
             </div>
+            </LoadingOverlay>
         )
     }
 
@@ -464,11 +478,9 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getPositionStart: () => dispatch(actions.fetchPostionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
-        createUser: (data) => dispatch(actions.createUser(data)),
+        createUser: (data, cb) => dispatch(actions.createUser(data, cb)),
         fetchAllUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-        editAUser: (user) => dispatch(actions.editAUser(user))
-        // processLogout: () => dispatch(actions.processLogout()),
-        // changeLanguageApp: (language) => dispatch(actions.changeLanguageApp(language))
+        editAUser: (user, cb) => dispatch(actions.editAUser(user, cb))
     };
 };
 
