@@ -90,7 +90,8 @@ class DetailClinic extends Component {
                             )
                         }) : (
                             <div className="ds-none">
-                                <FormattedMessage id="manage-doctor.none" />
+                                No data<br />
+                                <span class="iconify" data-icon="icomoon-free:file-empty"></span>
                             </div>
                         )
                     }
