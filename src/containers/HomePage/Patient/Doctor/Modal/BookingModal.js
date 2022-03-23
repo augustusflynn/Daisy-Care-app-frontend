@@ -162,7 +162,6 @@ class BookingModal extends Component {
             isLoading: true
         })
 
-        let formattedDate = new Date(birthday).getTime()
         let timeString = this.buildTimeBooking(dataSchedule)
         let doctorName = this.buildDoctorName(dataSchedule)
         const dataUser = {
@@ -173,7 +172,7 @@ class BookingModal extends Component {
             address: address,
             reason: reason,
             date: dataSchedule.date,
-            birthday: formattedDate,
+            birthday: birthday,
             doctorId: this.props.doctorId,
             gender: selectedGender.value,
             timeType: timeType,

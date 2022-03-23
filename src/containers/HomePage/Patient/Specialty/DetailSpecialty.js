@@ -57,10 +57,6 @@ class DetailSpecialty extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps) {
-
-    }
-
     buildInputDataSelectDoctor = (data) => {
         const { language } = this.props
         let result = [];
@@ -116,7 +112,7 @@ class DetailSpecialty extends Component {
     }
 
     render() {
-        const { 
+        const {
             arrDoctorId,
             dataDetailSpecialty,
             listProvince,
@@ -129,9 +125,9 @@ class DetailSpecialty extends Component {
                 <HomeHeader />
                 <div style={{ paddingTop: "50px" }} />
                 <div className="detail-specialty-body">
-                    <div 
+                    <div
                         className="detail-specialty-description"
-                        style={{backgroundImage: `url(${dataDetailSpecialty.image})` }}
+                        style={{ backgroundImage: `url(${dataDetailSpecialty.image})` }}
                     >
                         <div className="front-content">
                             {
@@ -150,8 +146,8 @@ class DetailSpecialty extends Component {
                                 <FormattedMessage id={isShowDetail ? "extra-doctor-info.hide-detail" : "extra-doctor-info.view-detail"} />
                             </button>
                         </div>
-                        
-                        
+
+
                     </div>
 
                     <Select

@@ -5,28 +5,33 @@ body {
 }
 
 .custom-button {
-  border: none;
-  outline: none;
-  padding: 10px;
-  margin: 5px;
-  width: 100%;
-  align-self: center;
+  border       : none;
+  outline      : none;
+  padding      : 10px;
+  margin       : 5px;
+  width        : 100%;
+  align-self   : center;
   border-radius: 5px;
-  font-weight: 600;
-  font-family: sans-serif;
+  font-weight  : 600;
+  font-family  : sans-serif;
 
   &:hover {
     font-weight: bold;
-    box-shadow: 1px 1px rgb(166, 209, 238);
+    box-shadow : 1px 1px rgb(166, 209, 238);
   }
 }
 
 .empty_content {
   text-align: center !important;
-  font-size: 32px;
-  color: #ccc;
+  font-size : 32px;
+  color     : #ccc;
+
   i {
-    width: 30px !important;
+    width : 30px !important;
     height: 30px !important;
   }
+}
+
+._loading_overlay_overlay {
+  position: fixed !important;
 }
