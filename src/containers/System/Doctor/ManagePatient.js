@@ -44,7 +44,7 @@ class ManagePatient extends Component {
             onClick: () => { }
 
         }
-   ]
+    ]
 
     async componentDidMount() {
         const { user } = this.props
@@ -78,10 +78,10 @@ class ManagePatient extends Component {
     getValueByLanguage = (data, type) => {
         const { language } = this.props
         if (type === "PATIENT") {
-            return language === LANGUAGES.VI ? `${data.lastName}  ${data.firstName}` : `${data.firstName} ${data.lastName}`
+            return language === LANGUAGES.VI ? `${data?.lastName || ""}  ${data?.firstName || ""}` : `${data?.firstName || ""} ${data?.lastName || ""}`
         }
         if (type === "VALUE") {
-            return language === LANGUAGES.VI ? data.valueVi : data.valueEn
+            return language === LANGUAGES.VI ? data?.valueVi || "" : data?.valueEn || ""
         }
     }
 
@@ -197,11 +197,11 @@ class ManagePatient extends Component {
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
                                                     <td>{this.getValueByLanguage(item.patientData, "PATIENT")}</td>
-                                                    <td>{item.patientData.address}</td>
+                                                    <td>{item?.patientData?.address || ""}</td>
                                                     <td>{this.getValueByLanguage(item.timeData, "VALUE")}</td>
-                                                    <td>{this.getValueByLanguage(item.patientData.genderData, "VALUE")}</td>
-                                                    <td>{item.patientData.birthday}</td>
-                                                    <td>{item.reason}</td>
+                                                    <td>{this.getValueByLanguage(item?.patientData?.genderData || "M", "VALUE")}</td>
+                                                    <td>{item?.patientData?.birthday || ""}</td>
+                                                    <td>{item?.reason || ""}</td>
                                                     <td>
                                                         <button
                                                             className="mp-btn-confirm"
