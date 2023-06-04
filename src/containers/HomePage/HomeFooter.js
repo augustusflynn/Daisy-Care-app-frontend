@@ -21,7 +21,7 @@ class HomeFooter extends Component {
                     <span className="github">
                         <a
                             rel="noreferrer"
-                            target="_blank" href="https://github.com/augustustung"
+                            target="_blank" href="https://github.com/augustusflynn"
                         >
                             <i className="fab fa-github"></i>
                             Github
